@@ -25,7 +25,7 @@ class CategoriesTableSeeder extends Seeder
                 'name' => 'Pakaian',
                 'description' => 'Kategori untuk berbagai jenis pakaian, termasuk pakaian pria, wanita, dan anak-anak.',
             ],
-
+            
             [
                 'id' => 3,
                 'name' => 'Makanan',

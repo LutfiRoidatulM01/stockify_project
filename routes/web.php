@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PracticeController;
+use App\Http\Controllers\SupplierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,16 +35,6 @@ Route::name('sign-in')->get('/sign-in', function () {
     return view('example.content.authentication.sign-in');
 });
 
-
-// Route::name('practice.')->group(function () {
-//     Route::name('first')->get('practice/1', function () {
-//         return view('pages.practice.1');
-//     });
-//     Route::name('second')->get('practice/2', function () {
-//         return view('pages.practice.2');
-//     });
-// });
-
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::middleware(['auth'])->group(function () {
     Route::name('index-practice')->get('/pages.practice.index', function () {
@@ -69,8 +60,6 @@ Route::middleware(['auth'])->group(function () {
         return view('pages.staff_gudang.index');
     })->name('index-staff_gudang');
 
-    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
-
     Route::get('/logout', [AuthController::class, 'logout']);
 });
 
@@ -78,19 +67,15 @@ Route::name('admin.')->group(function () {
     Route::name('products')->get('products/index', function () {
         return view('pages.admin.products.index');
     });
-    Route::name('categories')->get('categories/index', function () {
-        return view('pages.admin.categories.index');
-    });
-    
+    Route::get('/admin/categories', [CategoryController::class, 'index'])->name('categories.index');
 });
 
 Route::name('stok')->get('/stok', function () {
     return view('pages.admin.stok.index');
 });
 
-Route::name('suppliers')->get('/supplier', function () {
-    return view('pages.admin.suppliers.index');
-});
+Route::get('/suppliers', [SupplierController::class, 'index'])->name('suppliers.index');
+
 
 Route::name('users')->get('/user', function () {
     return view('pages.admin.users.index');
@@ -105,23 +90,3 @@ Route::name('products')->get('/product', function () {
 });
 
 
-
-Route::get('/admin/categories', [CategoryController::class, 'index'])->name('categories.index');
-
-
-// Route::name('index-admin')->get('/admin', function () {
-//     return view('pages.admin.index');
-// });
-
-// Route::name('index-manajer_gudang')->get('/manajer_gudang', function () {
-//     return view('pages.manajer_gudang.index');
-// });
-
-// Route::name('index-staff_gudang')->get('/staff_gudang', function () {
-//     return view('pages.staff_gudang.index');
-// });
-
-
-// Route::get('/pages/practice/index', function () {
-//     return view('pages.practice.index');
-// })->name('pages.practice.index');

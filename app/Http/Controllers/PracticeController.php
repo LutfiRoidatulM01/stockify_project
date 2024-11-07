@@ -8,6 +8,6 @@ class PracticeController extends Controller
 {
     public function index()
     {
-        return view('pages.practice.index'); // Pastikan file blade ada di lokasi ini
+        return view('pages.practice.index'); 
     }
 }
