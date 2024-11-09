@@ -57,7 +57,7 @@ $data = json_decode($json, true);
             <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
                 <button type="button" data-modal-target="add-user-modal" data-modal-toggle="add-user-modal" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto">
                     <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
-                    Add user
+                    Add Supplier
                 </button>
                 <a href="#" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 sm:w-auto">
                     <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd"></path></svg>
@@ -118,11 +118,11 @@ $data = json_decode($json, true);
                                 <td class="p-4 space-x-2 whitespace-nowrap">
                                     <button type="button" data-modal-target="edit-user-modal" data-modal-toggle="edit-user-modal" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300">
                                         <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"></path></svg>
-                                        Edit user
+                                        Edit
                                     </button>
                                     <button type="button" data-modal-target="delete-user-modal" data-modal-toggle="delete-user-modal" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300">
                                         <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
-                                        Delete user
+                                        Delete
                                     </button>
                                 </td>
                             </tr>
@@ -163,7 +163,7 @@ $data = json_decode($json, true);
             <!-- Modal header -->
             <div class="flex items-start justify-between p-5 border-b rounded-t">
                 <h3 class="text-xl font-semibold">
-                    Edit user
+                    Edit Supplier
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-toggle="edit-user-modal">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
@@ -174,32 +174,24 @@ $data = json_decode($json, true);
                 <form action="#">
                     <div class="grid grid-cols-6 gap-6">
                         <div class="col-span-6 sm:col-span-3">
-                            <label for="first-name" class="block mb-2 text-sm font-medium text-gray-900">First Name</label>
-                            <input type="text" name="first-name" value="Bonnie" id="first-name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="Bonnie" required>
+                            <label for="id" class="block mb-2 text-sm font-medium text-gray-900">ID</label>
+                            <input type="text" name="id" value="" id="id" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="">
                         </div>
                         <div class="col-span-6 sm:col-span-3">
-                            <label for="last-name" class="block mb-2 text-sm font-medium text-gray-900">Last Name</label>
-                            <input type="text" name="last-name" value="Green" id="last-name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="Green" required>
+                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nama Supplier</label>
+                            <input type="text" name="name" value="" id="name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="" required>
+                        </div>
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="address" class="block mb-2 text-sm font-medium text-gray-900">Alamat</label>
+                            <input type="text" name="address" value="" id="address" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="" required>
+                        </div>
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">No Hp</label>
+                            <input type="text" name="phone" value="" id="phone" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="" required>
                         </div>
                         <div class="col-span-6 sm:col-span-3">
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
-                            <input type="email" name="email" value="bonnie@flowbite.com" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="example@company.com" required>
-                        </div>
-                        <div class="col-span-6 sm:col-span-3">
-                            <label for="position" class="block mb-2 text-sm font-medium text-gray-900">Position</label>
-                            <input type="text" name="position" value="React Developer" id="position" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="e.g. React developer" required>
-                        </div>
-                        <div class="col-span-6 sm:col-span-3">
-                            <label for="current-password" class="block mb-2 text-sm font-medium text-gray-900">Current Password</label>
-                            <input type="password" name="current-password" value="••••••••" id="current-password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="••••••••" required>
-                        </div>
-                        <div class="col-span-6 sm:col-span-3">
-                            <label for="new-password" class="block mb-2 text-sm font-medium text-gray-900">New Password</label>
-                            <input type="password" name="new-password" value="••••••••" id="new-password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="••••••••" required>
-                        </div>
-                        <div class="col-span-6">
-                            <label for="biography" class="block mb-2 text-sm font-medium text-gray-900">Biography</label>
-                            <textarea id="biography" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500" placeholder="👨‍💻Full-stack web developer. Open-source contributor.">👨‍💻Full-stack web developer. Open-source contributor.</textarea>
+                            <input type="email" name="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="example@company.com" required>
                         </div>
                     </div>
                 </div>
@@ -220,7 +212,7 @@ $data = json_decode($json, true);
             <!-- Modal header -->
             <div class="flex items-start justify-between p-5 border-b rounded-t">
                 <h3 class="text-xl font-semibold">
-                    Add new user
+                    Tambahkan supplier
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-toggle="add-user-modal">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
@@ -231,30 +223,31 @@ $data = json_decode($json, true);
                 <form action="#">
                     <div class="grid grid-cols-6 gap-6">
                         <div class="col-span-6 sm:col-span-3">
-                            <label for="first-name" class="block mb-2 text-sm font-medium text-gray-900">First Name</label>
-                            <input type="text" name="first-name" id="first-name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="Bonnie" required>
+                            <label for="id" class="block mb-2 text-sm font-medium text-gray-900">ID</label>
+                            <input type="text" name="id" id="id" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="" required>
                         </div>
                         <div class="col-span-6 sm:col-span-3">
-                            <label for="last-name" class="block mb-2 text-sm font-medium text-gray-900">Last Name</label>
-                            <input type="text" name="last-name" id="last-name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="Green" required>
+                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nama Supplier</label>
+                            <input type="text" name="name" id="name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="" required>
+                        </div>
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="address" class="block mb-2 text-sm font-medium text-gray-900">Alamat</label>
+                            <input type="text" name="address" id="address" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="" required>
+                        </div>
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">No Hp</label>
+                            <input type="text" name="phone" id="phone" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="" required>
                         </div>
                         <div class="col-span-6 sm:col-span-3">
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
                             <input type="email" name="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="example@company.com" required>
                         </div>
-                        <div class="col-span-6 sm:col-span-3">
-                            <label for="position" class="block mb-2 text-sm font-medium text-gray-900">Position</label>
-                            <input type="text" name="position" id="position" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="e.g. React developer" required>
-                        </div>
-                        <div class="col-span-6">
-                            <label for="biography" class="block mb-2 text-sm font-medium text-gray-900">Biography</label>
-                            <textarea id="biography" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500" placeholder="👨‍💻Full-stack web developer. Open-source contributor."></textarea>
-                        </div>
+                        
                     </div>
                 </div>
                 <!-- Modal footer -->
                 <div class="items-center p-6 border-t border-gray-200 rounded-b">
-                    <button class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="submit">Add user</button>
+                    <button class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="submit">Tambah Supplier</button>
                 </div>
             </form>
         </div>

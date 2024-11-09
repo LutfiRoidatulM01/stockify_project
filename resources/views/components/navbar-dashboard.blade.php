@@ -8,6 +8,11 @@
           </button>
           <a href="{{ url('/') }}" class="flex ml-2 md:mr-24">
             {{-- <img src="{{ asset('static/images/logo.svg')}}" class="h-8 mr-3" alt="FlowBite Logo" /> --}}
+            <svg class="w-8 h-8 mr-3 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7h-1M8 7h-.688M13 5v4m-2-2h4"/>
+            </svg>
+            
+            
             <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Stockify</span>
           </a>
           <form action="#" method="GET" class="hidden lg:block lg:pl-3.5">

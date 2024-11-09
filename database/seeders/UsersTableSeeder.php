@@ -16,21 +16,21 @@ class UsersTableSeeder extends Seeder
         $userData = [
             [
                 'id' => 1,
-                'name' => 'Admin User',
+                'name' => 'Lutfi',
                 'email' => 'admin@gmail.com',
                 'password' => bcrypt('123456'),
                 'role' => 'admin',
             ],
             [
                 'id' => 2,
-                'name' => 'Warehouse Manager',
+                'name' => 'Aisyifa',
                 'email' => 'manager@gmail.com',
                 'password' => bcrypt('123456'), // Ganti dengan password yang diinginkan
                 'role' => 'manajer_gudang', 
             ],
             [
                 'id' => 3,
-                'name' => 'Warehouse Staff',
+                'name' => 'Iqbal',
                 'email' => 'staff@gmail.com',
                 'password' => bcrypt('123456'), // Ganti dengan password yang diinginkan
                 'role' => 'staff_gudang',

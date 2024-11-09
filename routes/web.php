@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PracticeController;
 use App\Http\Controllers\SupplierController;
@@ -17,17 +18,6 @@ use App\Http\Controllers\SupplierController;
 |
 */
 
-
-
-
-// Route::name('index-practice')->get('/', function () {
-//     return view('pages.practice.index');
-// });
-
-// Route::name('index-practice')->get('/', function () {
-//     return view('example.content.authentication.sign-in');
-// });
-
 Route::get('/', function () {
     return redirect()->route('sign-in');
 });
@@ -36,16 +26,6 @@ Route::name('sign-in')->get('/sign-in', function () {
 });
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::middleware(['auth'])->group(function () {
-    Route::name('index-practice')->get('/pages.practice.index', function () {
-        return view('pages.practice.index'); 
-    });
-});
-
-Route::name('sign-in')->get('/sign-in', function () {
-    return view('views.example.content.authentication.sign-in');
-});
-
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin', function () {
@@ -76,17 +56,14 @@ Route::name('stok')->get('/stok', function () {
 
 Route::get('/suppliers', [SupplierController::class, 'index'])->name('suppliers.index');
 
-
-Route::name('users')->get('/user', function () {
-    return view('pages.admin.users.index');
-});
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
 Route::name('report')->get('/report', function () {
     return view('pages.admin.reports');
 });
 
-Route::name('products')->get('/product', function () {
-    return view('pages.admin.products');
-});
+
+Route::resource('categories', CategoryController::class);
+
 
 
