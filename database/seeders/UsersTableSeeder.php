@@ -24,15 +24,15 @@ class UsersTableSeeder extends Seeder
             [
                 'id' => 2,
                 'name' => 'Aisyifa',
-                'email' => 'manager@gmail.com',
-                'password' => bcrypt('123456'), // Ganti dengan password yang diinginkan
+                'email' => 'manajer@gmail.com',
+                'password' => bcrypt('123456'), 
                 'role' => 'manajer_gudang', 
             ],
             [
                 'id' => 3,
                 'name' => 'Iqbal',
                 'email' => 'staff@gmail.com',
-                'password' => bcrypt('123456'), // Ganti dengan password yang diinginkan
+                'password' => bcrypt('123456'),
                 'role' => 'staff_gudang',
             ],
         ];

@@ -2,14 +2,14 @@
 
 namespace App\Services;
 
-use App\Repositories\CategoryRepositoryInterface;
+use App\Repositories\CategoryRepository;
 use Illuminate\Support\Facades\Validator;
 
 class CategoryService
 {
     protected $categoryRepository;
 
-    public function __construct(CategoryRepositoryInterface $categoryRepository)
+    public function __construct(CategoryRepository $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }

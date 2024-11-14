@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\categories;
+
 use Illuminate\Http\Request;
 use App\Services\CategoryService;
 
@@ -25,32 +24,24 @@ class CategoryController extends Controller
         $this->categoryService = $categoryService;
     }
 
-    // public function index()
-    // {
-    //     $categories = $this->categoryService->getAllCategories();
-    //     return view('categories.index', compact('categories'));
-    // }
-
     public function show($id)
     {
-        $category = $this->categoryService->getCategoryById($id);
-        return view('categories.show', compact('category'));
+        
     }
 
     public function create()
     {
-        return view('pages.admin.categories.create');
+        
     }
 
     public function store(Request $request)
     {
-        // Validasi input
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
         ]);
 
-        // Memanggil service untuk menyimpan data kategori
+
         $result = $this->categoryService->createCategory($validatedData);
 
         // Jika ada error pada validasi, kembalikan error

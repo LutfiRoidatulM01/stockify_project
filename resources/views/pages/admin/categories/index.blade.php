@@ -237,17 +237,16 @@
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nama
                                     Kategori</label>
-                                <input type="text" name="name" value="{{ old('name', $category->name) }}"
+                                <input type="text" name="name" value="{{  $category->name }}"
                                     id="name"
                                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
                                     placeholder="" required>
                             </div>
                             <div class="col-span-6">
-                                <label for="description"
-                                    class="block mb-2 text-sm font-medium text-gray-900">Deskripsi</label>
-                                <textarea id="description" value="" rows="4"
-                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
-                                    placeholder="Masukkan deskripsi"></textarea>
+                                <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Deskripsi</label>
+                                <input type="text" name="description" value="{{ $category->description }}" id="description"
+                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                    placeholder="" required>
                             </div>
 
                         </div>
@@ -348,11 +347,10 @@
                             </div>
 
                             <div class="col-span-6">
-                                <label for="description"
-                                    class="block mb-2 text-sm font-medium text-gray-900">Deskripsi</label>
-                                <textarea id="description" rows="4"
-                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
-                                    placeholder="Masukkan deskripsi"></textarea>
+                                <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Deskripsi</label>
+                                <input type="text" name="description" id="description"
+                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                    placeholder="Masukkan deskripsi kategori" required>
                             </div>
                         </div>
                 </div>

@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\PracticeController;
 use App\Http\Controllers\SupplierController;
 
 /*
@@ -64,6 +63,8 @@ Route::name('report')->get('/report', function () {
 
 
 Route::resource('categories', CategoryController::class);
+Route::resource('suppliers', SupplierController::class);
+Route::resource('users', UserController::class);
 
 
 

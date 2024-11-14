@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Category;
 
-class CategoryRepository implements CategoryRepositoryInterface
+class CategoryRepository
 {
     public function getAll()
     {
