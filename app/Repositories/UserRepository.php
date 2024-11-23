@@ -29,7 +29,12 @@ class UserRepository
 
     public function delete($id)
     {
-        $user = User::findOrFail($id);
-        return $user->delete();
+        
+        $user = User::find($id);
+        if ($user) {
+            $user->delete();
+            return true;
+        }
+        return false;
     }
 }

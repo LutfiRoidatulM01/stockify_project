@@ -23,9 +23,8 @@ class CategoryRepository
 
     public function update($id, array $data)
     {
-        $category = $this->findById($id);
-        $category->update($data);
-        return $category;
+        $category = Category::findOrFail($id);
+        return $category->update($data);
     }
 
     public function delete($id)

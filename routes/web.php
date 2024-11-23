@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\StockTransactionController;
 use App\Http\Controllers\SupplierController;
 
 /*
@@ -42,16 +44,23 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout']);
 });
 
-Route::name('admin.')->group(function () {
-    Route::name('products')->get('products/index', function () {
-        return view('pages.admin.products.index');
-    });
+Route::name('produk.')->group(function () {
+    Route::get('/admin/products', [ProductController::class, 'index'])->name('products.index');
     Route::get('/admin/categories', [CategoryController::class, 'index'])->name('categories.index');
 });
 
-Route::name('stok')->get('/stok', function () {
-    return view('pages.admin.stok.index');
+Route::name('stok.')->group(function () {
+    Route::get('/admin/riwayat_transaksi', [StockTransactionController::class, 'index'])->name('riwayat_transaksi.index');
+
+    Route::name('stock_opname')->get('stock_opname/index', function () {
+        return view('pages.admin.stock_opname.index');
+    });
+
 });
+
+// Route::name('stok')->get('/stok', function () {
+//     return view('pages.admin.stok.index');
+// });
 
 Route::get('/suppliers', [SupplierController::class, 'index'])->name('suppliers.index');
 
@@ -65,6 +74,7 @@ Route::name('report')->get('/report', function () {
 Route::resource('categories', CategoryController::class);
 Route::resource('suppliers', SupplierController::class);
 Route::resource('users', UserController::class);
+Route::resource('product', ProductController::class);
 
 
 

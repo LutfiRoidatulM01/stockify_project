@@ -17,7 +17,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::all(); // Mengambil semua data user
+        $users = $this->userService->getAllUsers();
         return view('pages.admin.users.index', compact('users')); // Mengirim data ke view
     }
 
@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.show', compact('users'));
     }
 
     /**
@@ -53,13 +53,17 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = $this->userService->getUserById($id);
+        if (!$user) {
+            return redirect()->route('users.index')->with('error', 'Users not found.');
+        }
+        return view('users.show', compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
         $user = $this->userService->getUserById($id);
         return view('users.edit', compact('user'));
@@ -68,28 +72,23 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $id,
-            'role' => 'required|string|in:admin,manajer_gudang,staff_gudang',
-        ]);
+        $result = $this->userService->updateUser($id, $request->all());
 
-        $userData = $request->only(['name', 'email', 'role']);
-        $updated = $this->userService->updateUser($id, $userData);
+        if (isset($result['errors'])) {
+            return redirect()->back()->withErrors($result['errors'])->withInput();
+        }
 
-        return $updated ? redirect()->route('users.index')->with('success', 'User berhasil diperbarui!')
-            : redirect()->back()->with('error', 'Terjadi kesalahan saat memperbarui user.');
+        return redirect()->route('users.index')->with('success', 'Users updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        $deleted = $this->userService->deleteUser($id);
-        return $deleted ? redirect()->route('users.index')->with('success', 'User berhasil dihapus!')
-            : redirect()->back()->with('error', 'Terjadi kesalahan saat menghapus user.');
+        $this->userService->deleteUser($id);
+        return redirect()->route('users.index')->with('success', 'Users deleted successfully.');
     }
 }

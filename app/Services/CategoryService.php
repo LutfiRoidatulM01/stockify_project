@@ -40,15 +40,6 @@ class CategoryService
 
     public function updateCategory($id, array $data)
     {
-        $validator = Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-        ]);
-
-        if ($validator->fails()) {
-            return ['errors' => $validator->errors()];
-        }
-
         return $this->categoryRepository->update($id, $data);
     }
 
