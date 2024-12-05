@@ -30,11 +30,8 @@ class UserRepository
     public function delete($id)
     {
         
-        $user = User::find($id);
-        if ($user) {
-            $user->delete();
-            return true;
-        }
-        return false;
+        $user = $this->findById($id);
+        $user->delete();
+        return $user;
     }
 }

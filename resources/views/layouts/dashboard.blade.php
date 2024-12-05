@@ -56,7 +56,12 @@
 <body class="{{ $whiteBg ? 'bg-white dark:bg-gray-900' : 'bg-gray-50 dark:bg-gray-800' }}">
     <x-navbar-dashboard/>
     <div class="flex pt-16 overflow-hidden bg-gray-50 dark:bg-gray-900">
-        <x-sidebar.admin-sidebar/>
+        @if(auth()->user()->role === 'admin')
+            <x-sidebar.admin-sidebar/>
+        @elseif(auth()->user()->role === 'manajer_gudang')
+            <x-sidebar.manajer-sidebar/>
+        @endif
+
         <div id="main-content" class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900">
             <main>
                 @yield('content')
@@ -67,4 +72,5 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/datepicker.min.js"></script>
 </body>
+
 </html>

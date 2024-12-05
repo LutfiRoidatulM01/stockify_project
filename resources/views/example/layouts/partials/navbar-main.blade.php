@@ -1,5 +1,5 @@
 <nav class="fixed z-50 w-full bg-white border-b border-gray-200 sm:py-2 dark:bg-gray-800 dark:border-gray-700">
-  <div class="container py-3 mx-auto">
+  {{-- <div class="container py-3 mx-auto">
     <div class="flex items-center justify-between">
       <div class="flex items-center justify-start">
         <a href="{{ url('/') }}" class="flex mr-4">
@@ -61,7 +61,7 @@
         </button>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!-- Mobile menu -->
   <div class="hidden sm:hidden" id="mobile-menu">
     <ul class="pt-2">

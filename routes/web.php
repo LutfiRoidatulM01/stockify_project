@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductAttributeController;
 use App\Http\Controllers\StockTransactionController;
 use App\Http\Controllers\SupplierController;
 
@@ -44,10 +45,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout']);
 });
 
+// Route untuk admin
 Route::name('produk.')->group(function () {
     Route::get('/admin/products', [ProductController::class, 'index'])->name('products.index');
-    Route::get('/admin/categories', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('/admin/categories', [CategoryController::class, 'index'])->name('categories.index'); 
+    Route::get('/admin/atribut', [ProductAttributeController::class, 'index'])->name('atribut.index');
 });
+
+Route::resource('categories', CategoryController::class);
+Route::resource('products', ProductController::class);
 
 Route::name('stok.')->group(function () {
     Route::get('/admin/riwayat_transaksi', [StockTransactionController::class, 'index'])->name('riwayat_transaksi.index');
@@ -56,25 +62,26 @@ Route::name('stok.')->group(function () {
         return view('pages.admin.stock_opname.index');
     });
 
+    Route::name('pengaturan_stok')->get('pengaturan_stok', function () {
+        return view('pages.admin.pengaturan_stok');
+    });
+
 });
 
-// Route::name('stok')->get('/stok', function () {
-//     return view('pages.admin.stok.index');
-// });
-
 Route::get('/suppliers', [SupplierController::class, 'index'])->name('suppliers.index');
-
+Route::resource('suppliers', SupplierController::class);
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
-
+Route::resource('users', UserController::class);
 Route::name('report')->get('/report', function () {
     return view('pages.admin.reports');
 });
 
 
-Route::resource('categories', CategoryController::class);
-Route::resource('suppliers', SupplierController::class);
-Route::resource('users', UserController::class);
-Route::resource('product', ProductController::class);
+
+
+
+
+
 
 
 

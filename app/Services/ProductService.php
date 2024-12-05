@@ -15,17 +15,17 @@ class ProductService
 
     public function getAllProducts()
     {
-        return $this->productRepository->getAllProducts();
-    }
-
-    public function createProduct(array $data)
-    {
-        return $this->productRepository->create($data);
+        return $this->productRepository->getAll();
     }
 
     public function getProductById($id)
     {
         return $this->productRepository->findById($id);
+    }
+
+    public function createProduct(array $data)
+    {
+        return $this->productRepository->create($data);
     }
 
     public function updateProduct($id, array $data)

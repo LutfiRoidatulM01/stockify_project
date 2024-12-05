@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Services\ProductService;
 
@@ -21,16 +23,18 @@ class ProductController extends Controller
 
     public function index()
     {
-        $product = $this->productService->getAllProducts();
-        return view('pages.admin.products.index', compact('product'));
+        $products = $this->productService->getAllProducts();
+        $categories = Category::all(); 
+        $suppliers = Supplier::all();
+        return view('pages.admin.products.index', compact('products', 'categories', 'suppliers'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new resource.s
      */
     public function create()
     {
-        //
+    
     }
 
     /**
@@ -38,7 +42,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'category_id' => 'required|exists:categories,id',
+            'supplier_id' => 'required|exists:suppliers,id',
+            'sku' => 'required|unique:products,sku',
+            'name' => 'required|string',
+            'purchase_price' => 'required|numeric',
+            'selling_price' => 'required|numeric',
+        ]);
+
+        $this->productService->createProduct($data);
+        return redirect()->route('products.index')->with('success', 'Produk berhasil ditambahkan.');
     }
 
     /**
@@ -55,7 +69,9 @@ class ProductController extends Controller
     public function edit(string $id)
     {
         $product = $this->productService->getProductById($id);
-        return view('product.edit', compact('product'));
+        $categories = Category::all();
+        $suppliers = Supplier::all();
+        return view('products.edit', compact('product', 'categories', 'suppliers'));
     }
 
     /**
@@ -63,8 +79,17 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $this->productService->updateProduct($id, $request->all());
-        return redirect()->route('product.index')->with('success', 'Product updated successfully.');
+        $data = $request->validate([
+            'category_id' => 'required|exists:categories,id',
+            'supplier_id' => 'required|exists:suppliers,id',
+            'sku' => 'required|unique:products,sku,' . $id,
+            'name' => 'required|string',
+            'purchase_price' => 'required|numeric',
+            'selling_price' => 'required|numeric',
+        ]);
+
+        $this->productService->updateProduct($id, $data);
+        return redirect()->route('products.index')->with('success', 'Produk berhasil diperbarui.');
     }
 
     /**
@@ -73,6 +98,6 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         $this->productService->deleteProduct($id);
-        return redirect()->route('product.index')->with('success', 'Product deleted successfully.');
+        return redirect()->route('products.index')->with('success', 'Produk berhasil dihapus.');
     }
 }

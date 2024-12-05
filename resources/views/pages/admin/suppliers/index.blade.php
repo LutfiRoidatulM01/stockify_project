@@ -173,8 +173,8 @@
                                     <td class="p-4 text-sm font-medium text-gray-500 whitespace-nowrap">
                                         {{ $supplier->email }}</td>
                                     <td class="p-4 space-x-2 whitespace-nowrap">
-                                        <button type="button" data-modal-target="edit-user-modal"
-                                            data-modal-toggle="edit-user-modal"
+                                        <button type="button" data-modal-target="edit-user-modal-{{ $supplier->id }}"
+                                            data-modal-toggle="edit-user-modal-{{ $supplier->id }}"
                                             class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300">
                                             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -187,8 +187,8 @@
                                             </svg>
                                             Edit
                                         </button>
-                                        <button type="button" data-modal-target="delete-user-modal"
-                                            data-modal-toggle="delete-user-modal"
+                                        <button type="button" data-modal-target="delete-user-modal-{{ $supplier->id }}"
+                                            data-modal-toggle="delete-user-modal-{{ $supplier->id }}"
                                             class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300">
                                             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -250,72 +250,6 @@
                         clip-rule="evenodd"></path>
                 </svg>
             </a>
-        </div>
-    </div>
-
-    <!-- Edit User Modal -->
-    <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
-        id="edit-user-modal">
-        <div class="relative w-full h-full max-w-2xl px-4 md:h-auto">
-            <!-- Modal content -->
-            <div class="relative bg-white rounded-lg shadow">
-                <!-- Modal header -->
-                <div class="flex items-start justify-between p-5 border-b rounded-t">
-                    <h3 class="text-xl font-semibold">
-                        Edit Supplier
-                    </h3>
-                    <button type="button"
-                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                        data-modal-toggle="edit-user-modal">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </button>
-                </div>
-                <!-- Modal body -->
-                <div class="p-6 space-y-6">
-                    <form action="{{ route('suppliers.update', $supplier->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="grid grid-cols-6 gap-6">
-                            <div class="col-span-6">
-                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nama
-                                    Supplier</label>
-                                <input type="text" name="name" value="{{ old('name', $supplier->name) }}"
-                                    id="name"
-                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                    placeholder="">
-                            </div>
-                            <div class="col-span-6">
-                                <label for="address" class="block mb-2 text-sm font-medium text-gray-900">Alamat</label>
-                                <input type="text" name="address" value="" id="address"
-                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                    placeholder="">
-                            </div>
-                            <div class="col-span-6">
-                                <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">No Hp</label>
-                                <input type="text" name="phone" value="" id="phone"
-                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                    placeholder="">
-                            </div>
-                            <div class="col-span-6">
-                                <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
-                                <input type="email" name="email" id="email"
-                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                    placeholder="example@company.com">
-                            </div>
-                        </div>
-                </div>
-                <!-- Modal footer -->
-                <div class="items-center p-6 border-t border-gray-200 rounded-b">
-                    <button
-                        class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                        type="submit">Save all</button>
-                </div>
-                </form>
-            </div>
         </div>
     </div>
 
@@ -390,9 +324,87 @@
         </div>
     </div>
 
+    <!-- Edit User Modal -->
+    @foreach ($suppliers as $supplier)
+        <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
+            id="edit-user-modal-{{ $supplier->id }}">
+            <div class="relative w-full h-full max-w-2xl px-4 md:h-auto">
+                <!-- Modal content -->
+                <div class="relative bg-white rounded-lg shadow">
+                    <!-- Modal header -->
+                    <div class="flex items-start justify-between p-5 border-b rounded-t">
+                        <h3 class="text-xl font-semibold">
+                            Edit Supplier
+                        </h3>
+                        <button type="button"
+                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                            data-modal-toggle="edit-user-modal-{{ $supplier->id }}">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="p-6 space-y-6">
+                        <form action="{{ route('suppliers.update', $supplier->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="grid grid-cols-6 gap-6">
+                                <div class="col-span-6">
+                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nama
+                                        Supplier</label>
+                                    <input type="text" name="name" value="{{ old('name', $supplier->name) }}"
+                                        id="name"
+                                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                        placeholder="">
+
+                                </div>
+                                <div class="col-span-6">
+                                    <label for="address"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Alamat</label>
+                                    <input type="text" name="address"
+                                        value="{{ old('address', $supplier->address) }}" id="address"
+                                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                        placeholder="">
+                                </div>
+                                <div class="col-span-6">
+                                    <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">No
+                                        Hp</label>
+                                    <input type="text" name="phone" value="{{ old('phone', $supplier->phone) }}"
+                                        id="phone"
+                                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                        placeholder="">
+                                </div>
+                                <div class="col-span-6">
+                                    <label for="email"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Email</label>
+                                    <input type="email" name="email" id="email"
+                                        value="{{ old('email', $supplier->email) }}"
+                                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                        placeholder="example@company.com">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="items-center p-6 border-t border-gray-200 rounded-b">
+                        <button
+                            class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                            type="submit">Save all</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    
+
     <!-- Delete User Modal -->
     <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
-        id="delete-user-modal">
+        id="delete-user-modal-{{ $supplier->id }}">
         <div class="relative w-full h-full max-w-md px-4 md:h-auto">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow">
@@ -400,7 +412,7 @@
                 <div class="flex justify-end p-2">
                     <button type="button"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                        data-modal-hide="delete-user-modal">
+                        data-modal-hide="delete-user-modal-{{ $supplier->id }}">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
@@ -434,4 +446,5 @@
             </div>
         </div>
     </div>
+    @endforeach
 @endsection

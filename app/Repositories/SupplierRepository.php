@@ -13,7 +13,7 @@ class SupplierRepository
 
     public function findById($id)
     {
-        return Supplier::find($id);
+        return Supplier::findOrFail($id);
     }
 
     public function create(array $data)
@@ -28,7 +28,7 @@ class SupplierRepository
             $supplier->update($data);
             return $supplier;
         }
-        return null;
+        // return null;
     }
 
     public function delete($id)

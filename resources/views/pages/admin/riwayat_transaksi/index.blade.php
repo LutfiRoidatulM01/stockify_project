@@ -28,14 +28,14 @@
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Produk</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama User</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jenis Transaksi</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jumlah</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Catatan</th>
+                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">ID</th>
+                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">Produk</th>
+                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">Nama User</th>
+                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">Jenis Transaksi</th>
+                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">Jumlah</th>
+                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">Tanggal</th>
+                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">Status</th>
+                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">Catatan</th>
               
                     </tr>
                 </thead>
@@ -43,43 +43,20 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                     @foreach ($transactions as $transaction)
                     <tr>
-                        <td class="px-6 py-3 text-sm text-gray-900">{{ $transaction->id }}</td>
-                        <td class="px-6 py-3 text-sm text-gray-500">{{ $transaction->product->name }}</td>
-                        <td class="px-6 py-3 text-sm text-gray-500">{{ $transaction->user->name}}</td>
-                        <td class="px-6 py-3 text-sm text-gray-500">{{ $transaction->type }}</td>
-                        <td class="px-6 py-3 text-sm text-gray-500">{{ $transaction->quantity }}</td>
-                        <td class="px-6 py-3 text-sm text-gray-500">{{ $transaction->date }}</td>
-                        <td class="px-6 py-3 text-sm text-gray-500">{{ $transaction->status }}</td>
-                        <td class="px-6 py-3 text-sm text-gray-500">{{ $transaction->notes }}</td>
-                      
-                        
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $transaction->id }}</td>
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $transaction->product->name }}</td>
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $transaction->user->name}}</td>
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $transaction->type }}</td>
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $transaction->quantity }}</td>
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $transaction->date }}</td>
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $transaction->status }}</td>
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $transaction->notes }}</td>
                     </tr>
                     @endforeach
                 </tbody>
-                {{-- <tbody class="bg-white divide-y divide-gray-200">
-                    @foreach ($transactions as $transaction)
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $transaction->created_at->format('d M Y') }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $transaction->product->name }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm {{ $transaction->type === 'in' ? 'text-green-600' : 'text-red-600' }}">
-                            {{ $transaction->type === 'in' ? 'Barang Masuk' : 'Barang Keluar' }}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $transaction->quantity }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $transaction->supplier->name ?? '-' }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm">
-                            <a href="{{ route('stock_transactions.show', $transaction->id) }}" 
-                               class="text-indigo-600 hover:text-indigo-900">Detail</a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody> --}}
+                
             </table>
         </div>
-
-        <!-- Pagination -->
-        {{-- <div class="mt-4">
-            {{ $transactions->links() }}
-        </div> --}}
     </div>
 </div>
 @endsection

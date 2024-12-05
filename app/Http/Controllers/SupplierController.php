@@ -72,11 +72,16 @@ class SupplierController extends Controller
 
     public function update(Request $request, $id)
     {
-        $result = $this->supplierService->updateSupplier($id, $request->all());
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'phone' => 'required|string|max:15',
+            'email' => 'required|email|max:255',
+        ]);
 
-        if (isset($result['errors'])) {
-            return redirect()->back()->withErrors($result['errors'])->withInput();
-        }
+        
+
+        $this->supplierService->updateSupplier($id, $request->all());
 
         return redirect()->route('suppliers.index')->with('success', 'Supplier updated successfully.');
     }

@@ -12,9 +12,15 @@ class Supplier extends Model
     protected $table = 'suppliers';
 
     protected $fillable = [
+        'id',
         'name',
         'address',
         'phone',
         'email',
     ];
+
+    public function product()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

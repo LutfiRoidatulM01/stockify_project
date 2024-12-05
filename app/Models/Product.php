@@ -11,6 +11,7 @@ class Product extends Model
     protected $table = 'products';
 
     protected $fillable = [
+        'id',
         'name',
         'category_id',
         'supplier_id',
@@ -22,11 +23,11 @@ class Product extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function supplier()
     {
-        return $this->belongsTo(Supplier::class);
+        return $this->belongsTo(Supplier::class, 'supplier_id');
     }
 }

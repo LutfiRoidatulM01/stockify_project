@@ -44,12 +44,12 @@ class CategoryController extends Controller
 
         $result = $this->categoryService->createCategory($validatedData);
 
-        // Jika ada error pada validasi, kembalikan error
+      
         if (isset($result['errors'])) {
             return redirect()->route('categories.index')->withErrors($result['errors']);
         }
 
-        // Kembalikan dengan pesan sukses
+    
         return redirect()->route('categories.index')->with('success', 'Category successfully created!');
     }
 

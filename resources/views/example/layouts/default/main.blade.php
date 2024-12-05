@@ -11,5 +11,5 @@
   </div>
 </main>
 
-@include('example.layouts.partials.footer-main')
+{{-- @include('example.layouts.partials.footer-main') --}}
 @endsection

@@ -12,6 +12,7 @@ class StockTransaction extends Model
     protected $table = 'stock_transactions';
 
     protected $fillable = [
+        'id',
         'product_id',
         'user_id',
         'type',

@@ -6,27 +6,20 @@ use App\Models\Product;
 
 class ProductRepository
 {
-    protected $model;
-
-    public function __construct(Product $product)
+    public function getAll()
     {
-        $this->model = $product;
-    }
-
-    public function getAllProducts()
-    {
-        return Product::with(['category', 'supplier'])->get();
-    }
-
-
-    public function create(array $data)
-    {
-        return $this->model->create($data);
+        return Product::all();
+    
     }
 
     public function findById($id)
     {
-        return $this->model->findOrFail($id);
+        return Product::findOrFail($id);
+    }
+
+    public function create(array $data)
+    {
+        return Product::create($data);
     }
 
     public function update($id, array $data)
@@ -39,6 +32,7 @@ class ProductRepository
     public function delete($id)
     {
         $product = $this->findById($id);
-        return $product->delete();
+        $product->delete();
+        return true;
     }
 }
