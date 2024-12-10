@@ -9,7 +9,7 @@
     {{-- <x-sidebar-menu-dashboard routeName="stok" title="Stok"/> --}}
     <x-sidebar-menu-dropdown-dashboard routeName="stok.*" title="Manajemen Stok">
         <x-sidebar-menu-dropdown-item-dashboard routeName="stok.riwayat_transaksi.index" title="Riwayat Transaksi"/>
-        <x-sidebar-menu-dropdown-item-dashboard routeName="stok.stock_opname" title="Stok Opname" />
+        <x-sidebar-menu-dropdown-item-dashboard routeName="stok.stock_opname.index" title="Stok Opname" />
         <x-sidebar-menu-dropdown-item-dashboard routeName="stok.pengaturan_stok" title="Pengaturan Stok Minimum" />
     </x-sidebar-menu-dropdown-dashboard>
     <x-sidebar-menu-dashboard routeName="suppliers.index" title="Supplier"/>

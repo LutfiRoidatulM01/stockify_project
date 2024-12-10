@@ -194,8 +194,8 @@
                                             </svg>
                                             Edit
                                         </button>
-                                        <button type="button" data-modal-target="delete-user-modal"
-                                            data-modal-toggle="delete-user-modal"
+                                        <button type="button" data-modal-target="delete-user-modal-{{ $user->id }}"
+                                            data-modal-toggle="delete-user-modal-{{ $user->id }}"
                                             class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300">
                                             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -261,82 +261,6 @@
         </div>
     </div>
 
-    <!-- Edit User Modal -->
-    @foreach ($users as $user)
-    <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
-        id="edit-user-modal-{{ $user->id }}">
-        <div class="relative w-full h-full max-w-2xl px-4 md:h-auto">
-            <!-- Modal content -->
-            <div class="relative bg-white rounded-lg shadow">
-                <!-- Modal header -->
-                <div class="flex items-start justify-between p-5 border-b rounded-t">
-                    <h3 class="text-xl font-semibold">
-                        Edit user
-                    </h3>
-                    <button type="button"
-                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                        data-modal-toggle="edit-user-modal-{{ $user->id }}">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </button>
-                </div>
-                <!-- Modal body -->
-                <div class="p-6 space-y-6">
-                    <form action="{{ route('users.update', $user->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="grid grid-cols-6 gap-6">
-                            <!-- First Name -->
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
-                                <input type="text" name="name" value="{{ $user->name }}" id="name"
-                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                    placeholder="Enter full name" required>
-                            </div>
-
-                            <!-- Email -->
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
-                                <input type="email" name="email" value="{{ $user->email }}" id="email"
-                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                    placeholder="example@company.com" required>
-                            </div>
-
-                            <!-- Role -->
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="role" class="block mb-2 text-sm font-medium text-gray-900">Role</label>
-                                <select name="role" id="role"
-                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                    required>
-                                    <option value="admin" {{ old('role', $user->role) == 'admin' ? 'selected' : '' }}>
-                                        Admin</option>
-                                    <option value="staff_gudang"
-                                        {{ old('role', $user->role) == 'staff_gudang' ? 'selected' : '' }}>Staff Gudang
-                                    </option>
-                                    <option value="manajer_gudang"
-                                        {{ old('role', $user->role) == 'manajer_gudang' ? 'selected' : '' }}>Manajer Gudang
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-
-                </div>
-
-                <!-- Modal footer -->
-                <div class="items-center p-6 border-t border-gray-200 rounded-b">
-                    <button
-                        class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                        type="submit">Save all</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    @endforeach
-
     <!-- Add User Modal -->
     <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
         id="add-user-modal">
@@ -346,7 +270,7 @@
                 <!-- Modal header -->
                 <div class="flex items-start justify-between p-5 border-b rounded-t">
                     <h3 class="text-xl font-semibold">
-                        Tambahkan supplier
+                        Tambahkan User
                     </h3>
                     <button type="button"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
@@ -390,10 +314,9 @@
                                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
                                     required>
                                     <option value="" disabled selected>Pilih Role</option>
-                                    <option value="admin">Admin</option> <!-- Ubah ke 'admin' -->
+                                    <option value="admin">Admin</option>
                                     <option value="manajer_gudang">Manajer Gudang</option>
-                                    <!-- Ubah ke 'manajer_gudang' -->
-                                    <option value="staff_gudang">Staff Gudang</option> <!-- Ubah ke 'staff_gudang' -->
+                                    <option value="staff_gudang">Staff Gudang</option>
                                 </select>
                             </div>
                         </div>
@@ -409,49 +332,136 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Delete User Modal -->
+    <!-- Edit User Modal -->
+    @foreach ($users as $user)
         <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
-        id="delete-user-modal">
-        <div class="relative w-full h-full max-w-md px-4 md:h-auto">
-            <!-- Modal content -->
-            <div class="relative bg-white rounded-lg shadow">
-                <!-- Modal header -->
-                <div class="flex justify-end p-2">
-                    <button type="button"
-                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                        data-modal-hide="delete-user-modal">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </button>
-                </div>
-                <!-- Modal body -->
-                <div class="p-6 pt-0 text-center">
-                    <svg class="w-16 h-16 mx-auto text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    <h3 class="mt-5 mb-6 text-lg text-gray-500">Are you sure you want to delete this user?</h3>
-                    <form id="delete-form-{{ $user->id }}" action="{{ route('users.destroy', $user->id) }}"
-                        method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit"
-                            class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-base inline-flex items-center px-3 py-2.5 text-center mr-2">
-                            Yes, I'm sure
+            id="edit-user-modal-{{ $user->id }}">
+            <div class="relative w-full h-full max-w-2xl px-4 md:h-auto">
+                <!-- Modal content -->
+                <div class="relative bg-white rounded-lg shadow">
+                    <!-- Modal header -->
+                    <div class="flex items-start justify-between p-5 border-b rounded-t">
+                        <h3 class="text-xl font-semibold">
+                            Edit user
+                        </h3>
+                        <button type="button"
+                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                            data-modal-toggle="edit-user-modal-{{ $user->id }}">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
                         </button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="p-6 space-y-6">
+                        <form action="{{ route('users.update', $user->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="grid grid-cols-6 gap-6">
+                                <!-- First Name -->
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="name"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Name</label>
+                                    <input type="text" name="name" value="{{ $user->name }}" id="name"
+                                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                        placeholder="Enter full name" required>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="email"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Email</label>
+                                    <input type="email" name="email" value="{{ $user->email }}" id="email"
+                                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                        placeholder="example@company.com" required>
+                                </div>
+
+                                <!-- Role -->
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="role"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Role</label>
+                                    <select name="role" id="role"
+                                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                        required>
+                                        <option value="admin"
+                                            {{ old('role', $user->role) == 'admin' ? 'selected' : '' }}>
+                                            Admin</option>
+                                        <option value="staff_gudang"
+                                            {{ old('role', $user->role) == 'staff_gudang' ? 'selected' : '' }}>Staff Gudang
+                                        </option>
+                                        <option value="manajer_gudang"
+                                            {{ old('role', $user->role) == 'manajer_gudang' ? 'selected' : '' }}>Manajer
+                                            Gudang
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="items-center p-6 border-t border-gray-200 rounded-b">
+                        <button
+                            class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                            type="submit">Save all</button>
+                    </div>
                     </form>
-                    <a href="#"
-                        class="text-gray-900 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 border border-gray-200 font-medium inline-flex items-center rounded-lg text-base px-3 py-2.5 text-center"
-                        data-modal-hide="delete-user-modal">
-                        No, cancel
-                    </a>
                 </div>
             </div>
         </div>
-    </div>
-    @endsection
+
+
+
+
+        <!-- Delete User Modal -->
+        <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
+            id="delete-user-modal-{{ $user->id }}">
+            <div class="relative w-full h-full max-w-md px-4 md:h-auto">
+                <!-- Modal content -->
+                <div class="relative bg-white rounded-lg shadow">
+                    <!-- Modal header -->
+                    <div class="flex justify-end p-2">
+                        <button type="button"
+                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                            data-modal-hide="delete-user-modal-{{ $user->id }}">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="p-6 pt-0 text-center">
+                        <svg class="w-16 h-16 mx-auto text-red-600" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <h3 class="mt-5 mb-6 text-lg text-gray-500">Are you sure you want to delete this user?</h3>
+                        <form id="delete-form-{{ $user->id }}" action="{{ route('users.destroy', $user->id) }}"
+                            method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-base inline-flex items-center px-3 py-2.5 text-center mr-2">
+                                Yes, I'm sure
+                            </button>
+                        </form>
+                        <a href="#"
+                            class="text-gray-900 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 border border-gray-200 font-medium inline-flex items-center rounded-lg text-base px-3 py-2.5 text-center"
+                            data-modal-hide="delete-user-modal">
+                            No, cancel
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+@endsection

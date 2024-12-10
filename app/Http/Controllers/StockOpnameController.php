@@ -11,6 +11,6 @@ class StockOpnameController extends Controller
     {
         $stock_opname = StockTransaction::all();
 
-        return view('pages.admin.stock_opname.index', compact('stok_opname'));
+        return view('pages.admin.stock_opname.index', compact('stock_opname'));
     }
 }

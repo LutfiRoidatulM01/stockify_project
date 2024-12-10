@@ -49,7 +49,17 @@
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $transaction->type }}</td>
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $transaction->quantity }}</td>
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $transaction->date }}</td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $transaction->status }}</td>
+                        <td class="p-4 text-sm font-normal whitespace-nowrap">
+                    <span 
+                        class="px-2 py-1 text-xs font-medium rounded 
+                        @if($transaction->status == 'pending') bg-yellow-100 text-yellow-800 
+                        @elseif($transaction->status == 'diterima') bg-green-100 text-green-800 
+                        @elseif($transaction->status == 'ditolak') bg-red-100 text-red-800 
+                        @elseif($transaction->status == 'dikeluarkan') bg-blue-100 text-blue-800 
+                        @endif">
+                        {{ ucfirst($transaction->status) }}
+                    </span>
+                </td>
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $transaction->notes }}</td>
                     </tr>
                     @endforeach

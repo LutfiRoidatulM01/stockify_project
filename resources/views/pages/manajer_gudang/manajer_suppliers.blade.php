@@ -22,28 +22,7 @@
                     </form>
                     
                 </div>
-                <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
-                    <button type="button" data-modal-target="add-user-modal" data-modal-toggle="add-user-modal"
-                        class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto">
-                        <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        Add Supplier
-                    </button>
-                    <a href="#"
-                        class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 sm:w-auto">
-                        <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        Export
-                    </a>
-                </div>
+               
             </div>
         </div>
     </div>
@@ -76,9 +55,7 @@
                                 <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
                                     Email
                                 </th>
-                                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                    Actions
-                                </th>
+                                
                             </tr>
                         </thead>
 
@@ -103,33 +80,7 @@
                                         {{ $supplier->phone }}</td>
                                     <td class="p-4 text-sm font-medium text-gray-500 whitespace-nowrap">
                                         {{ $supplier->email }}</td>
-                                    <td class="p-4 space-x-2 whitespace-nowrap">
-                                        <button type="button" data-modal-target="edit-user-modal-{{ $supplier->id }}"
-                                            data-modal-toggle="edit-user-modal-{{ $supplier->id }}"
-                                            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300">
-                                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z">
-                                                </path>
-                                                <path fill-rule="evenodd"
-                                                    d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                                                    clip-rule="evenodd"></path>
-                                            </svg>
-                                            Edit
-                                        </button>
-                                        <button type="button" data-modal-target="delete-user-modal-{{ $supplier->id }}"
-                                            data-modal-toggle="delete-user-modal-{{ $supplier->id }}"
-                                            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300">
-                                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd"
-                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                    clip-rule="evenodd"></path>
-                                            </svg>
-                                            Delete
-                                        </button>
-                                    </td>
+                                    
                                 </tr>
                             @endforeach
                         </tbody>
@@ -185,7 +136,7 @@
     </div>
 
     <!-- Add User Modal -->
-    <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
+    {{-- <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
         id="add-user-modal">
         <div class="relative w-full h-full max-w-2xl px-4 md:h-auto">
             <!-- Modal content -->
@@ -247,10 +198,10 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Edit User Modal -->
-    @foreach ($suppliers as $supplier)
+    {{-- @foreach ($suppliers as $supplier)
         <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
             id="edit-user-modal-{{ $supplier->id }}">
             <div class="relative w-full h-full max-w-2xl px-4 md:h-auto">
@@ -371,5 +322,5 @@
             </div>
         </div>
     </div>
-    @endforeach
+    @endforeach --}}
 @endsection

@@ -26,6 +26,7 @@ class ProductController extends Controller
         $products = $this->productService->getAllProducts();
         $categories = Category::all(); 
         $suppliers = Supplier::all();
+        $products = Product::with(['category', 'supplier', 'stockTransactions'])->get();
         return view('pages.admin.products.index', compact('products', 'categories', 'suppliers'));
     }
 

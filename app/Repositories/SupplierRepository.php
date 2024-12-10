@@ -28,7 +28,7 @@ class SupplierRepository
             $supplier->update($data);
             return $supplier;
         }
-        // return null;
+      
     }
 
     public function delete($id)

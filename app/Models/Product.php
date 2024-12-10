@@ -30,4 +30,14 @@ class Product extends Model
     {
         return $this->belongsTo(Supplier::class, 'supplier_id');
     }
+
+    public function stockTransactions()
+    {
+        return $this->hasMany(StockTransaction::class);
+    }
+
+    public function totalStock()
+    {
+        return $this->stockTransactions()->sum('quantity');
+    }
 }

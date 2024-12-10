@@ -31,7 +31,7 @@ class StockTransactionSeeder extends Seeder
                 'user_id' => 2,
                 'type' => 'Keluar',
                 'quantity' => 50,
-                'date' => '2024-11-04',  // Menetapkan tanggal saat ini
+                'date' => '2024-11-04',  
                 'status' => 'Dikeluarkan',
                 'notes' => 'Pengiriman barang ke pelanggan X.',
             ],
@@ -42,7 +42,7 @@ class StockTransactionSeeder extends Seeder
                 'user_id' => 3,
                 'type' => 'Masuk',
                 'quantity' => 200,
-                'date' => '2024-11-03',  // Tanggal manual
+                'date' => '2024-11-03', 
                 'status' => 'Pending',
                 'notes' => 'Barang masih dalam proses verifikasi.',
             ],
@@ -53,7 +53,7 @@ class StockTransactionSeeder extends Seeder
                 'user_id' => 1,
                 'type' => 'Keluar',
                 'quantity' => 75,
-                'date' => '2024-11-05',  // Tanggal tertentu
+                'date' => '2024-11-05',  
                 'status' => 'Ditolak',
                 'notes' => 'Barang ditolak karena rusak.',
             ],
@@ -63,7 +63,7 @@ class StockTransactionSeeder extends Seeder
                 'user_id' => 2,
                 'type' => 'Masuk',
                 'quantity' => 150,
-                'date' => '2024-11-07',  // Tanggal tertentu
+                'date' => '2024-11-07',  
                 'status' => 'Diterima',
                 'notes' => 'Barang masuk dalam jumlah besar setelah pengiriman.',
             ],

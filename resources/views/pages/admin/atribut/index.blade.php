@@ -1,86 +1,87 @@
 @extends('layouts.dashboard')
 
 @section('content')
-<div class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5">
-    <div class="w-full mb-1">
-        <div class="mb-4">
-            <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl">Atribut Produk</h1>
-        </div>
-        <div class="items-center justify-between block sm:flex md:divide-x md:divide-gray-100">
-            <div class="flex items-center mb-4 sm:mb-0">
-                <form class="sm:pr-3" action="#" method="GET">
-                    <label for="products-search" class="sr-only">Search</label>
-                    <div class="relative w-48 mt-1 sm:w-64 xl:w-96">
-                        <input type="text" name="email" id="products-search"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                            placeholder="Cari Ketegori">
-                    </div>
-                </form>
+    <div class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5">
+        <div class="w-full mb-1">
+            <div class="mb-4">
+                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl">Atribut Produk</h1>
             </div>
-            <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
-                <button type="button" data-modal-target="add-user-modal" data-modal-toggle="add-user-modal"
-                    class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto">
-                    Tambah Atribut
-                </button>
+            <div class="items-center justify-between block sm:flex md:divide-x md:divide-gray-100">
+                <div class="flex items-center mb-4 sm:mb-0">
+                    <form class="sm:pr-3" action="#" method="GET">
+                        <label for="products-search" class="sr-only">Search</label>
+                        <div class="relative w-48 mt-1 sm:w-64 xl:w-96">
+                            <input type="text" name="email" id="products-search"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                placeholder="Cari Ketegori">
+                        </div>
+                    </form>
+                </div>
+                <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
+                    <button type="button" data-modal-target="add-user-modal" data-modal-toggle="add-user-modal"
+                        class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto">
+                        Tambah Atribut
+                    </button>
 
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="flex flex-col">
-    <div class="overflow-x-auto">
-        <div class="inline-block min-w-full align-middle">
-            <div class="overflow-hidden shadow">
-                <table class="min-w-full divide-y divide-gray-200 table-fixed">
-                    <thead class="bg-gray-100">
-                        <tr>
-                            <th scope="col" class="p-4">
-                                <div class="flex items-center">
-                                    <input id="checkbox-all" aria-describedby="checkbox-1" type="checkbox"
-                                        class="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300">
-                                    <label for="checkbox-all" class="sr-only">checkbox</label>
-                                </div>
-                            </th>
-                            <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                ID
-                            </th>
-                            <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                Nama Produk
-                            </th>
-                            <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                Atribut
-                            </th>
-                            <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                Nilai
-                            </th>
-                            <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                Actions
-                            </th>
-                        
-                        </tr>
-                    </thead>
-
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($atribut as $atribute)
-                            <tr class="hover:bg-gray-100">
-                                <td class="w-4 p-4">
+    <div class="flex flex-col">
+        <div class="overflow-x-auto">
+            <div class="inline-block min-w-full align-middle">
+                <div class="overflow-hidden shadow">
+                    <table class="min-w-full divide-y divide-gray-200 table-fixed">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th scope="col" class="p-4">
                                     <div class="flex items-center">
-                                        <input id="checkbox-{{ $atribute->id }}"
-                                            aria-describedby="checkbox-{{ $atribute->id }}" type="checkbox"
+                                        <input id="checkbox-all" aria-describedby="checkbox-1" type="checkbox"
                                             class="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300">
-                                        <label for="checkbox-{{ $atribute->id }}" class="sr-only">checkbox</label>
+                                        <label for="checkbox-all" class="sr-only">checkbox</label>
                                     </div>
-                                </td>
-                                <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $atribute->id }}
-                                </td>
-                                <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $atribute->product->name }}
-                                </td>
-                                <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
-                                    {{ $atribute->name }}</td>
-                                <td
-                                    class="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs">
-                                    {{ $atribute->value }}</td>
+                                </th>
+                                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
+                                    ID
+                                </th>
+                                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
+                                    Nama Produk
+                                </th>
+                                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
+                                    Atribut
+                                </th>
+                                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
+                                    Nilai
+                                </th>
+                                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
+                                    Actions
+                                </th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            @foreach ($atribut as $atribute)
+                                <tr class="hover:bg-gray-100">
+                                    <td class="w-4 p-4">
+                                        <div class="flex items-center">
+                                            <input id="checkbox-{{ $atribute->id }}"
+                                                aria-describedby="checkbox-{{ $atribute->id }}" type="checkbox"
+                                                class="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300">
+                                            <label for="checkbox-{{ $atribute->id }}" class="sr-only">checkbox</label>
+                                        </div>
+                                    </td>
+                                    <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $atribute->id }}
+                                    </td>
+                                    <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
+                                        {{ $atribute->product->name }}
+                                    </td>
+                                    <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
+                                        {{ $atribute->name }}</td>
+                                    <td
+                                        class="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs">
+                                        {{ $atribute->value }}</td>
                                     <td class="p-4 space-x-2 whitespace-nowrap">
                                         <button type="button" data-modal-target="edit-user-modal"
                                             data-modal-toggle="edit-user-modal"
@@ -108,19 +109,19 @@
                                             Delete
                                         </button>
                                     </td>
-                                
-                            </tr>
-                        @endforeach
-                    </tbody>
+
+                                </tr>
+                            @endforeach
+                        </tbody>
 
 
-                </table>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div
+    <div
         class="sticky bottom-0 right-0 items-center w-full p-4 bg-white border-t border-gray-200 sm:flex sm:justify-between rounded-lg">
         <div class="flex items-center mb-4 sm:mb-0">
             <a href="#"
@@ -163,6 +164,69 @@
                         clip-rule="evenodd"></path>
                 </svg>
             </a>
+        </div>
+    </div>
+
+    <!-- Add Atribut Drawer -->
+    <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
+        id="add-user-modal">
+        <div class="relative w-full h-full max-w-2xl px-4 md:h-auto">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow">
+                <!-- Modal header -->
+                <div class="flex items-start justify-between p-5 border-b rounded-t">
+                    <h3 class="text-xl font-semibold">
+                        Tambah Atribut
+                    </h3>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                        data-modal-toggle="add-user-modal">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-6 space-y-6">
+                    <form action="{{ route('atribut.store') }}" method="POST">
+                        @csrf
+                        <div class="grid grid-cols-6 gap-6">
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="product_id" class="block mb-2 text-sm font-medium text-gray-900">Nama Produk</label>
+                                <select name="product_id" id="product_id"
+                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" required>
+                                    <option value="" disabled selected>Pilih Nama Produk</option>
+                                    @foreach ($products as $product)
+                                        <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Atribut</label>
+                                <input type="text" name="name" id="name"
+                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                    placeholder="Masukkan atribut" required>
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="value" class="block mb-2 text-sm font-medium text-gray-900">Nilai</label>
+                                <input type="text" name="value" id="value"
+                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                    placeholder="Masukkan nilai" required>
+                            </div>
+                        </div>
+                </div>
+                <!-- Modal footer -->
+                <div class="items-center p-6 border-t border-gray-200 rounded-b">
+                    <button
+                        class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                        type="submit">Tambah Atribut</button>
+                </div>
+                </form>
+            </div>
         </div>
     </div>
 @endsection
