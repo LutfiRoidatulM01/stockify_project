@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-use App\Services\ProductAttributeService;
+use App\Http\Controllers\Controller;
+use App\Services\admin\ProductAttributeService;
 
 class ProductAttributeController extends Controller
 {

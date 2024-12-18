@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
-use App\Services\ProductService;
+use App\Http\Controllers\Controller;
+use App\Services\admin\ProductService;
 
 class ProductController extends Controller
 {
@@ -27,7 +28,7 @@ class ProductController extends Controller
         $categories = Category::all(); 
         $suppliers = Supplier::all();
         $products = Product::with(['category', 'supplier', 'stockTransactions'])->get();
-        return view('pages.admin.products.index', compact('products', 'categories', 'suppliers'));
+        return view('pages.admin.product_admin', compact('products', 'categories', 'suppliers'));
     }
 
     /**

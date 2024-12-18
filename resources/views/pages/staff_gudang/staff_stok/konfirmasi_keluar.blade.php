@@ -6,7 +6,7 @@
     <div class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5">
         <div class="w-full mb-1">
             <div class="mb-4">
-                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl">Riwayat Transaksi Produk</h1>
+                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl">Konfirmasi Barang Keluar</h1>
             </div>
             <div class="items-center justify-between block sm:flex md:divide-x md:divide-gray-100">
                 <div class="flex items-center mb-4 sm:mb-0">
@@ -18,12 +18,6 @@
                                 placeholder="Cari Ketegori">
                         </div>
                     </form>
-                </div>
-               
-                <div>
-                    <label for="filter-date" class="block text-sm font-medium text-gray-700">Filter Tanggal</label>
-                    <input type="date" id="filter-date" name="filter-date"
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 </div>
             </div>
         </div>
@@ -49,24 +43,23 @@
                                     Produk
                                 </th>
                                 <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                    Nama User
+                                    Jumlah
                                 </th>
                                 <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
                                     Jenis Transaksi
                                 </th>
                                 <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                    Jumlah
+                                    Status
                                 </th>
                                 <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
                                     Tanggal
                                 </th>
                                 <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                    Status
-                                </th>
-                                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
                                     Catatan
                                 </th>
-                                
+                                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
+                                    Actions
+                                </th>
                             </tr>
                         </thead>
 
@@ -87,13 +80,9 @@
                                     <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
                                         {{ $transaction->product->name }}</td>
                                     <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
-                                        {{ $transaction->user->name }}</td>
-                                    <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
-                                        {{ $transaction->type }}</td>
-                                    <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
                                         {{ $transaction->quantity }}</td>
                                     <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
-                                        {{ $transaction->date }}</td>
+                                        {{ $transaction->type }}</td>
                                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
                                             @php
                                                 $statusColors = [
@@ -111,8 +100,27 @@
                                         </td>
                                         
                                     <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
+                                        {{ $transaction->date }}</td>
+                                    <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
                                         {{ $transaction->notes }}</td>
+                                        <td class="p-4 space-x-2 whitespace-nowrap">
 
+                                            <form action="{{ route('konfirmasi.dikeluarkan', $transaction->id) }}" method="POST" class="inline">
+                                                @csrf
+                                                @method('PATCH')
+                                                <button type="submit"
+                                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700">
+                                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M10.09 15.59L7.5 13H20v-2H7.5l2.59-2.59L9.67 7l-5 5 5 5 1.42-1.41z">
+                                                        </path>
+                                                    </svg>
+                                                    Dikeluarkan
+                                                </button>
+                                            </form>
+                                            
+                                        </td>
+                                        
                                 </tr>
                             @endforeach
                         </tbody>

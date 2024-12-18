@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\admin;
 
 
-use App\Repositories\ProductAttributeRepository;
+use App\Repositories\admin\ProductAttributeRepository;
 
 class ProductAttributeService
 {

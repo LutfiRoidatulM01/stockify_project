@@ -21,6 +21,7 @@ return new class extends Migration
             $table->decimal('purchase_price', 10, 2);
             $table->decimal('selling_price', 10, 2);
             $table->string('image')->nullable();
+            $table->integer('minimum_stock')->default(0);
             $table->timestamps();
         });
     }

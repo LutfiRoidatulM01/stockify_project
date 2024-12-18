@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
 use App\Models\Supplier;
 use Illuminate\Http\Request;
-use App\Services\SupplierService;
+use App\Http\Controllers\Controller;
+use App\Services\admin\SupplierService;
 use Illuminate\Validation\ValidationException;
 
 class SupplierController extends Controller
@@ -13,7 +14,7 @@ class SupplierController extends Controller
     protected $supplierService;
 
     public function __construct(SupplierService $supplierService)
-    {
+    {   
         $this->supplierService = $supplierService;
     }
     /**

@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Models\StockTransaction;
+use App\Http\Controllers\Controller;
 
 class StockTransactionController extends Controller
 {

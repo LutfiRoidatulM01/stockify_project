@@ -45,9 +45,7 @@
                                         <label for="checkbox-all" class="sr-only">checkbox</label>
                                     </div>
                                 </th>
-                                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                    ID
-                                </th>
+                                
                                 <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
                                     Kategori
                                 </th>
@@ -60,16 +58,13 @@
                                 <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
                                     SKU
                                 </th>
-                                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                    Stok Minimum
-                                </th>
-                                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                    Apa aja
-                                </th>
+
                                 <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
                                     Stok
                                 </th>
-
+                                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
+                                    Stok Minimun
+                                </th>
                                 <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
                                     Harga Beli
                                 </th>
@@ -86,13 +81,11 @@
                                 <tr>
                                     <td class="p-4">
                                         <div class="flex items-center">
-                                            <input type="checkbzzzox"
+                                            <input type="checkbox"
                                                 class="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300">
                                         </div>
                                     </td>
 
-                                    <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $product->id }}
-                                    </td>
                                     <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
                                         {{ $product->category->name }}</td>
                                     <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $product->name }}
@@ -101,10 +94,12 @@
                                         {{ $product->supplier->name }}</td>
                                     <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $product->sku }}
                                     </td>
-                                    <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $product->minimum_stock }}
-                                    </td>
+
                                     <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
                                         {{ $product->totalStock() }}</td>
+                                    <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
+                                        {{ $product->minimum_stock }}
+                                    </td>
                                     <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
                                         Rp. {{ $product->purchase_price }}</td>
                                     <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
@@ -147,7 +142,7 @@
     </div>
 
     <div
-        class="sticky bottom-0 right-0 items-center w-full p-4 bg-white border-t border-gray-200 sm:flex sm:justify-between rounded-lg">
+        class="sticky bottom-0 right-0 items-center w-full p-4 bg-white border-t border-gray-200 sm:flex sm:justify-between">
         <div class="flex items-center mb-4 sm:mb-0">
             <a href="#"
                 class="inline-flex justify-center p-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100">

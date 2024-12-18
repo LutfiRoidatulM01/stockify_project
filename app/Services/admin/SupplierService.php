@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\admin;
 
-use App\Repositories\SupplierRepository;
+use App\Repositories\admin\SupplierRepository;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 

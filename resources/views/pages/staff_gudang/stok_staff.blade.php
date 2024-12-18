@@ -1,13 +1,12 @@
 @extends('layouts.dashboard')
+
+@section('title', 'Riwayat Transaksi Stok')
+
 @section('content')
-    @php
-        $json = Illuminate\Support\Facades\File::get(public_path('data/products.json'));
-        $data = json_decode($json, true);
-    @endphp
     <div class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5">
         <div class="w-full mb-1">
             <div class="mb-4">
-                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl">Produk</h1>
+                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl">Konfirmasi Transaksi Barang</h1>
             </div>
             <div class="items-center justify-between block sm:flex md:divide-x md:divide-gray-100">
                 <div class="flex items-center mb-4 sm:mb-0">
@@ -16,15 +15,15 @@
                         <div class="relative w-48 mt-1 sm:w-64 xl:w-96">
                             <input type="text" name="email" id="products-search"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                placeholder="Cari Produk">
+                                placeholder="Cari Barang">
                         </div>
                     </form>
-
                 </div>
+
                 <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
-                    <button type="button" data-modal-target="add-product-modal" data-modal-toggle="add-product-modal"
+                    <button type="button" data-modal-target="add-user-modal" data-modal-toggle="add-user-modal"
                         class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto">
-                        Tambah Produk
+                        Tambah Transaksi
                     </button>
 
                 </div>
@@ -49,69 +48,53 @@
                                     ID
                                 </th>
                                 <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                    Kategori
+                                    Produk
                                 </th>
                                 <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                    Nama Produk
+                                    Jumlah
                                 </th>
                                 <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                    Supplier
+                                    Tanggal
                                 </th>
                                 <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                    SKU
+                                    Jenis Transaksi
                                 </th>
                                 <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                    Stok Minimum
-                                </th>
-                                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                    Apa aja
-                                </th>
-                                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                    Stok
-                                </th>
-
-                                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                    Harga Beli
-                                </th>
-                                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                    Harga jual
+                                    Catatan
                                 </th>
                                 <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
                                     Actions
                                 </th>
                             </tr>
                         </thead>
+
                         <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach ($products as $product)
-                                <tr>
-                                    <td class="p-4">
+                            @foreach ($transactions as $transaction)
+                                <tr class="hover:bg-gray-100">
+                                    <td class="w-4 p-4">
                                         <div class="flex items-center">
-                                            <input type="checkbzzzox"
+                                            <input id="checkbox-{{ $transaction->id }}"
+                                                aria-describedby="checkbox-{{ $transaction->id }}" type="checkbox"
                                                 class="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300">
+                                            <label for="checkbox-{{ $transaction->id }}" class="sr-only">checkbox</label>
                                         </div>
                                     </td>
-
-                                    <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $product->id }}
+                                    <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
+                                        {{ $transaction->id }}
                                     </td>
                                     <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
-                                        {{ $product->category->name }}</td>
-                                    <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $product->name }}
-                                    </td>
+                                        {{ $transaction->product->name }}</td>
                                     <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
-                                        {{ $product->supplier->name }}</td>
-                                    <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $product->sku }}
-                                    </td>
-                                    <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">{{ $product->minimum_stock }}
-                                    </td>
+                                        {{ $transaction->quantity }}</td>
                                     <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
-                                        {{ $product->totalStock() }}</td>
+                                        {{ $transaction->date }}</td>
                                     <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
-                                        Rp. {{ $product->purchase_price }}</td>
+                                        {{ $transaction->type }}</td>
                                     <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
-                                        Rp. {{ $product->selling_price }}</td>
+                                        {{ $transaction->notes }}</td>
                                     <td class="p-4 space-x-2 whitespace-nowrap">
-                                        <button type="button" data-modal-target="edit-user-modal-{{ $product->id }}"
-                                            data-modal-toggle="edit-user-modal-{{ $product->id }}"
+                                        <button type="button" data-modal-target="edit-user-modal-{{ $transaction->id }}"
+                                            data-modal-toggle="edit-user-modal-{{ $transaction->id }}"
                                             class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300">
                                             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -124,8 +107,8 @@
                                             </svg>
                                             Edit
                                         </button>
-                                        <button type="button" data-modal-target="delete-user-modal-{{ $product->id }}"
-                                            data-modal-toggle="delete-user-modal-{{ $product->id }}"
+                                        <button type="button" data-modal-target="delete-user-modal-{{ $transaction->id }}"
+                                            data-modal-toggle="delete-user-modal-{{ $transaction->id }}"
                                             class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300">
                                             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -139,8 +122,9 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                    </table>
 
+
+                    </table>
                 </div>
             </div>
         </div>
@@ -192,20 +176,20 @@
         </div>
     </div>
 
-    <!-- Add Product Drawer -->
+    {{-- <!-- Add Product Drawer -->
     <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
-        id="add-product-modal">
+        id="add-user-modal">
         <div class="relative w-full h-full max-w-2xl px-4 md:h-auto">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow">
                 <!-- Modal header -->
                 <div class="flex items-start justify-between p-5 border-b rounded-t">
                     <h3 class="text-xl font-semibold">
-                        Tambah Produk
+                        Tambah Transaksi
                     </h3>
                     <button type="button"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                        data-modal-toggle="add-product-modal">
+                        data-modal-toggle="add-user-modal">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
@@ -215,78 +199,76 @@
                 </div>
                 <!-- Modal body -->
                 <div class="p-6 space-y-6">
-                    <form action="{{ route('products.store') }}" method="POST">
+                    <form action="{{ route('transactions.store') }}" method="POST">
                         @csrf
                         <div class="grid grid-cols-6 gap-6">
-                            <!-- Kategori -->
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="category_id"
-                                    class="block mb-2 text-sm font-medium text-gray-900">Kategori</label>
-                                <select id="category_id" name="category_id"
-                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                    required>
-                                    <option value="">Pilih Kategori</option>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <!-- Supplier -->
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="supplier_id"
-                                    class="block mb-2 text-sm font-medium text-gray-900">Supplier</label>
-                                <select id="supplier_id" name="supplier_id"
-                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                    required>
-                                    <option value="">Pilih Supplier</option>
-                                    @foreach ($suppliers as $supplier)
-                                        <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <!-- SKU -->
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="sku" class="block mb-2 text-sm font-medium text-gray-900">SKU</label>
-                                <input type="text" id="sku" name="sku"
-                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                    placeholder="Masukkan SKU" required>
-                            </div>
-
-                            <!-- Nama Produk -->
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nama
+                                <label for="product_id" class="block mb-2 text-sm font-medium text-gray-900">Nama
                                     Produk</label>
-                                <input type="text" id="name" name="name"
+                                <select name="product_id" id="product_id"
                                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                    placeholder="Masukkan Nama Produk" required>
+                                    required>
+                                    <option value="" disabled selected>Pilih Nama Produk</option>
+                                    @foreach ($products as $product)
+                                        <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
 
-                            <!-- Harga Beli -->
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="purchase_price" class="block mb-2 text-sm font-medium text-gray-900">Harga
-                                    Beli</label>
-                                <input type="number" id="purchase_price" name="purchase_price"
+                                <label for="user_id" class="block mb-2 text-sm font-medium text-gray-900">Nama
+                                    User</label>
+                                <select name="user_id" id="user_id"
                                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                    placeholder="Masukkan Harga Beli" required>
+                                    required>
+                                    <option value="" disabled selected>Pilih Nama User</option>
+                                    @foreach ($users as $user)
+                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
 
-                            <!-- Harga Jual -->
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="selling_price" class="block mb-2 text-sm font-medium text-gray-900">Harga
-                                    Jual</label>
-                                <input type="number" id="selling_price" name="selling_price"
+                                <label for="type" class="block mb-2 text-sm font-medium text-gray-900">Jenis
+                                    Transaksi</label>
+                                <select name="type" id="type"
                                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                    placeholder="Masukkan Harga Jual" required>
+                                    required>
+                                    <option value="" disabled selected>Pilih Jenis Transaksi</option>
+                                    <option value="Masuk">Masuk</option>
+                                    <option value="Keluar">Keluar</option>
+                                </select>
                             </div>
+
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="quatity" class="block mb-2 text-sm font-medium text-gray-900">Jumlah</label>
+                                <input type="number" name="quantity" id="quantity"
+                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                    placeholder="Masukkan Jumlah" required>
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="date" class="block mb-2 text-sm font-medium text-gray-900">Tanggal</label>
+                                <input type="date" name="date" id="date"
+                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                    placeholder="Masukkan Tanggal" required>
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="notes" class="block mb-2 text-sm font-medium text-gray-900">Catatan</label>
+                                <input type="text" name="notes" id="notes"
+                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                    placeholder="Masukkan Catatan" required>
+                            </div>
+
                         </div>
                 </div>
                 <!-- Modal footer -->
                 <div class="items-center p-6 border-t border-gray-200 rounded-b">
                     <button
                         class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                        type="submit">Tambah Produk</button>
+                        type="submit">Tambah Transaksi</button>
                 </div>
                 </form>
             </div>
@@ -294,125 +276,127 @@
     </div>
 
     <!-- Edit Product Drawer -->
-    @foreach ($products as $product)
+    @foreach ($transactions as $transaction)
         <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
-            id="edit-user-modal-{{ $product->id }}">
+            id="edit-user-modal-{{ $transaction->id }}">
             <div class="relative w-full h-full max-w-2xl px-4 md:h-auto">
                 <!-- Modal content -->
                 <div class="relative bg-white rounded-lg shadow">
                     <!-- Modal header -->
                     <div class="flex items-start justify-between p-5 border-b rounded-t">
                         <h3 class="text-xl font-semibold">
-                            Edit Produk
+                            Edit Transaksi
                         </h3>
                         <button type="button"
                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                            data-modal-toggle="edit-user-modal-{{ $product->id }}">
+                            data-modal-toggle="edit-user-modal-{{ $transaction->id }}">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
                                     d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                    clip-rule="evenodd"></path>
+                                    clip-rule="evenodd"></path>c
                             </svg>
                         </button>
                     </div>
                     <!-- Modal body -->
                     <div class="p-6 space-y-6">
-                        <form action="{{ route('products.update', $product->id) }}" method="POST">
+                        <form action="{{ route('transactions.update', $transaction->id) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nama
+                                    <label for="product_id" class="block mb-2 text-sm font-medium text-gray-900">Nama
                                         Produk</label>
-                                    <input type="text" name="name" value="{{ old('name', $product->name) }}"
-                                        id="name"
-                                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                        placeholder="Enter full name" required>
-                                </div>
-                                <!-- Kategori -->
-                                <div class="col-span-6 sm:col-span-3">
-                                    <label for="category_id"
-                                        class="block mb-2 text-sm font-medium text-gray-900">Kategori</label>
-                                    <select id="category_id" name="category_id"
+                                    <select name="product_id" id="product_id"
                                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
                                         required>
-                                        <option value="">Pilih Kategori</option>
-                                        @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}"
-                                                {{ old('category_id', $product->category_id) == $category->id ? 'selected' : '' }}>
-                                                {{ $category->name }}
+                                        <option value="" disabled>Pilih Nama Produk</option>
+                                        @foreach ($products as $product)
+                                            <option value="{{ $product->id }}"
+                                                {{ old('product_id', $transaction->product_id) == $product->id ? 'selected' : '' }}>
+                                                {{ $product->name }}
                                             </option>
                                         @endforeach
                                     </select>
                                 </div>
 
-                                <!-- Supplier -->
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="supplier_id"
-                                        class="block mb-2 text-sm font-medium text-gray-900">Supplier</label>
-                                    <select id="supplier_id" name="supplier_id"
+                                    <label for="user_id" class="block mb-2 text-sm font-medium text-gray-900">Nama
+                                        User</label>
+                                    <select name="user_id" id="user_id"
                                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
                                         required>
-                                        <option value="">Pilih Supplier</option>
-                                        @foreach ($suppliers as $supplier)
-                                            <option value="{{ $supplier->id }}"
-                                                {{ old('supplier_id', $product->supplier_id) == $supplier->id ? 'selected' : '' }}>
-                                                {{ $supplier->name }}
+                                        <option value="" disabled>Pilih Nama User</option>
+                                        @foreach ($users as $user)
+                                            <option value="{{ $user->id }}"
+                                                {{ old('user_id', $transaction->user_id) == $user->id ? 'selected' : '' }}>
+                                                {{ $user->name }}
                                             </option>
                                         @endforeach
                                     </select>
                                 </div>
 
-
-                                <!-- SKU -->
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="sku" class="block mb-2 text-sm font-medium text-gray-900">SKU</label>
-                                    <input type="text" id="sku" name="sku"
-                                        value="{{ old('sku', $product->sku) }}"
+                                    <label for="type" class="block mb-2 text-sm font-medium text-gray-900">Jenis
+                                        Transaksi</label>
+                                    <select name="type" id="type"
                                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                        placeholder="Masukkan SKU" required>
+                                        required>
+                                        <option value="" disabled>Pilih Jenis Transaksi</option>
+                                        <option value="Masuk"
+                                            {{ old('type', $transaction->type) == 'Masuk' ? 'selected' : '' }}>Masuk
+                                        </option>
+                                        <option value="Keluar"
+                                            {{ old('type', $transaction->type) == 'Keluar' ? 'selected' : '' }}>Keluar
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="quantity"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Jumlah</label>
+                                    <input type="number" name="quantity"
+                                        value="{{ old('quantity', $transaction->quantity) }}" id="quantity"
+                                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                        placeholder="Masukkan Jumlah" required>
                                 </div>
 
 
-                                <!-- Harga Beli -->
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="purchase_price" class="block mb-2 text-sm font-medium text-gray-900">Harga
-                                        Beli</label>
-                                    <input type="number" id="purchase_price" name="purchase_price"
-                                        value="{{ old('purchase_price', $product->purchase_price) }}"
+                                    <label for="date"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Tanggal</label>
+                                    <input type="date" name="date" value="{{ old('date', $transaction->date) }}"
+                                        id="date"
                                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                        placeholder="Masukkan Harga Beli" required>
+                                        placeholder="Masukkan Tanggal" required>
                                 </div>
 
-                                <!-- Harga Jual -->
+
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="selling_price" class="block mb-2 text-sm font-medium text-gray-900">Harga
-                                        Jual</label>
-                                    <input type="number" id="selling_price" name="selling_price"
-                                        value="{{ old('selling_price', $product->selling_price) }}"
+                                    <label for="notes"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Catatan</label>
+                                    <input type="text" name="notes" value="{{ old('notes', $transaction->notes) }}"
+                                        id="notes"
                                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                        placeholder="Masukkan Harga Jual" required>
+                                        placeholder="Masukkan Catatan" required>
                                 </div>
                             </div>
                     </div>
+
                     <!-- Modal footer -->
                     <div class="items-center p-6 border-t border-gray-200 rounded-b">
                         <button
                             class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                            type="submit">Save all</button>
+                            type="submit">Simpan Perubahan</button>
                     </div>
                     </form>
                 </div>
             </div>
         </div>
 
-
-
-
         <!-- Delete Product Drawer -->
         <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
-            id="delete-user-modal-{{ $product->id }}">
+            id="delete-user-modal-{{ $transaction->id }}">
             <div class="relative w-full h-full max-w-md px-4 md:h-auto">
                 <!-- Modal content -->
                 <div class="relative bg-white rounded-lg shadow">
@@ -420,7 +404,7 @@
                     <div class="flex justify-end p-2">
                         <button type="button"
                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                            data-modal-hide="delete-user-modal-{{ $product->id }}">
+                            data-modal-hide="delete-user-modal-{{ $transaction->id }}">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -437,8 +421,8 @@
                                 d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                         <h3 class="mt-5 mb-6 text-lg text-gray-500">Are you sure you want to delete this user?</h3>
-                        <form id="delete-form-{{ $category->id }}"
-                            action="{{ route('products.destroy', $product->id) }}" method="POST">
+                        <form id="delete-form-{{ $transaction->id }}"
+                            action="{{ route('transactions.destroy', $transaction->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit"
@@ -455,5 +439,5 @@
                 </div>
             </div>
         </div>
-    @endforeach
+    @endforeach --}}
 @endsection

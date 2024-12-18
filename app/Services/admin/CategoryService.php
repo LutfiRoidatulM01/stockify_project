@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\admin;
 
-use App\Repositories\CategoryRepository;
+use App\Repositories\admin\CategoryRepository;
 use Illuminate\Support\Facades\Validator;
+
 
 class CategoryService
 {

@@ -6,7 +6,7 @@
     <div class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5">
         <div class="w-full mb-1">
             <div class="mb-4">
-                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl">Riwayat Transaksi Produk</h1>
+                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl">Konfirmasi Barang Masuk</h1>
             </div>
             <div class="items-center justify-between block sm:flex md:divide-x md:divide-gray-100">
                 <div class="flex items-center mb-4 sm:mb-0">
@@ -15,16 +15,11 @@
                         <div class="relative w-48 mt-1 sm:w-64 xl:w-96">
                             <input type="text" name="email" id="products-search"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                placeholder="Cari Ketegori">
+                                placeholder="Cari Barang">
                         </div>
                     </form>
                 </div>
-               
-                <div>
-                    <label for="filter-date" class="block text-sm font-medium text-gray-700">Filter Tanggal</label>
-                    <input type="date" id="filter-date" name="filter-date"
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                </div>
+
             </div>
         </div>
     </div>
@@ -49,24 +44,23 @@
                                     Produk
                                 </th>
                                 <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                    Nama User
+                                    Jumlah
                                 </th>
                                 <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
                                     Jenis Transaksi
                                 </th>
                                 <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                    Jumlah
+                                    Status
                                 </th>
                                 <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
                                     Tanggal
                                 </th>
                                 <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                    Status
-                                </th>
-                                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
                                     Catatan
                                 </th>
-                                
+                                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
+                                    Actions
+                                </th>
                             </tr>
                         </thead>
 
@@ -87,31 +81,63 @@
                                     <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
                                         {{ $transaction->product->name }}</td>
                                     <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
-                                        {{ $transaction->user->name }}</td>
+                                        {{ $transaction->quantity }}</td>
                                     <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
                                         {{ $transaction->type }}</td>
                                     <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
-                                        {{ $transaction->quantity }}</td>
+                                        @php
+                                            $statusColors = [
+                                                'pending' => 'bg-yellow-100 text-yellow-800',
+                                                'diterima' => 'bg-green-100 text-green-800',
+                                                'ditolak' => 'bg-red-100 text-red-800',
+                                                'dikeluarkan' => 'bg-blue-100 text-blue-800',
+                                            ];
+                                            $defaultColor = 'bg-gray-100 text-gray-800';
+                                            $statusColor = $statusColors[$transaction->status] ?? $defaultColor;
+                                        @endphp
+                                        <span class="px-2 py-1 text-xs font-medium rounded {{ $statusColor }}">
+                                            {{ ucfirst($transaction->status ?? 'Tidak Diketahui') }}
+                                        </span>
+                                    </td>
+
                                     <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
                                         {{ $transaction->date }}</td>
-                                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
-                                            @php
-                                                $statusColors = [
-                                                    'pending' => 'bg-yellow-100 text-yellow-800',
-                                                    'diterima' => 'bg-green-100 text-green-800',
-                                                    'ditolak' => 'bg-red-100 text-red-800',
-                                                    'dikeluarkan' => 'bg-blue-100 text-blue-800',
-                                                ];
-                                                $defaultColor = 'bg-gray-100 text-gray-800';
-                                                $statusColor = $statusColors[$transaction->status] ?? $defaultColor;
-                                            @endphp
-                                            <span class="px-2 py-1 text-xs font-medium rounded {{ $statusColor }}">
-                                                {{ ucfirst($transaction->status ?? 'Tidak Diketahui') }}
-                                            </span>
-                                        </td>
-                                        
                                     <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap">
                                         {{ $transaction->notes }}</td>
+                                    <td class="p-4 space-x-2 whitespace-nowrap">
+
+                                        <!-- Tombol Approve -->
+                                        <form action="{{ route('konfirmasi.approve', $transaction->id) }}" method="POST"
+                                            class="inline">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button type="submit"
+                                                class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700">
+                                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10 17l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
+                                            </svg>
+                                                Diterima
+                                            </button>
+                                        </form>
+
+                                        <!-- Tombol Reject -->
+                                        <form action="{{ route('konfirmasi.reject', $transaction->id) }}" method="POST"
+                                            class="inline">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button type="submit"
+                                                class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700">
+                                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M18.36 6.64l-1.41-1.41L12 10.59 7.05 5.64 5.64 7.05l4.95 4.95-4.95 4.95 1.41 1.41L12 13.41l4.95 4.95 1.41-1.41-4.95-4.95 4.95-4.95z">
+                                                </path>
+                                            </svg>
+                                                Ditolak
+                                            </button>
+                                        </form>
+                                    </td>
 
                                 </tr>
                             @endforeach

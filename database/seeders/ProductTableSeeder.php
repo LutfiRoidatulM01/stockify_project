@@ -22,6 +22,7 @@ class ProductTableSeeder extends Seeder
                 'sku' => 'TV42-123',
                 'purchase_price' => 3000000,
                 'selling_price' => 3500000,
+                'minimum_stock' => 100,
                 'description' => 'TV pintar dengan resolusi HD dan konektivitas internet.',
             ],
             [
@@ -32,6 +33,7 @@ class ProductTableSeeder extends Seeder
                 'sku' => 'KF123-456',
                 'purchase_price' => 100000,
                 'selling_price' => 150000,
+                'minimum_stock' => 200,
                 'description' => 'Kemeja formal berkualitas tinggi untuk keperluan kantor.',
             ],
             [
@@ -42,6 +44,7 @@ class ProductTableSeeder extends Seeder
                 'sku' => 'BC789-101',
                 'purchase_price' => 15000,
                 'selling_price' => 20000,
+                'minimum_stock' => 300,
                 'description' => 'Biskuit rasa coklat dengan isian krim lezat.',
             ],
             [
@@ -52,6 +55,7 @@ class ProductTableSeeder extends Seeder
                 'sku' => 'LPG2023-789',
                 'purchase_price' => 10000000,
                 'selling_price' => 12000000,
+                'minimum_stock' => 200,
                 'description' => 'Laptop high-end untuk gaming dengan prosesor terbaru.',
             ],
             [
@@ -62,6 +66,7 @@ class ProductTableSeeder extends Seeder
                 'sku' => 'DW111-333',
                 'purchase_price' => 250000,
                 'selling_price' => 300000,
+                'minimum_stock' => 200,
                 'description' => 'Dress elegan dengan bahan berkualitas untuk acara formal.',
             ],
 
@@ -73,6 +78,7 @@ class ProductTableSeeder extends Seeder
                 'sku' => 'BOLA-456',
                 'purchase_price' => 75000,
                 'selling_price' => 100000,
+                'minimum_stock' => 200,
                 'description' => 'Bola sepak standar internasional.'
             ],
 
@@ -84,6 +90,7 @@ class ProductTableSeeder extends Seeder
                 'sku' => 'TAS-LAPTOP123',
                 'purchase_price' => 200000,
                 'selling_price' => 250000,
+                'minimum_stock' => 200,
                 'description' => 'Tas ransel untuk laptop dengan banyak kompartemen.'
             ],
 
@@ -96,6 +103,7 @@ class ProductTableSeeder extends Seeder
                 'sku' => 'SEPATU-OLAH-01',
                 'purchase_price' => 250000,
                 'selling_price' => 300000,
+                'minimum_stock' => 200,
                 'description' => 'Sepatu olahraga untuk lari dan gym.'
             ],
 
@@ -107,6 +115,7 @@ class ProductTableSeeder extends Seeder
                 'sku' => 'MEJA-KANTOR01',
                 'purchase_price' => 500000,
                 'selling_price' => 700000,
+                'minimum_stock' => 200,
                 'description' => 'Meja kantor dengan desain minimalis.'
             ],
 
@@ -118,6 +127,7 @@ class ProductTableSeeder extends Seeder
                 'sku' => 'LAMPU-LED123',
                 'purchase_price' => 50000,
                 'selling_price' => 75000,
+                'minimum_stock' => 200,
                 'description' => 'Lampu tidur dengan lampu LED yang hemat energi.'
             ],
 
@@ -129,6 +139,7 @@ class ProductTableSeeder extends Seeder
                 'sku' => 'PONSEL-5G123',
                 'purchase_price' => 3000000,
                 'selling_price' => 3500000,
+                'minimum_stock' => 200,
                 'description' => 'Ponsel Android dengan koneksi 5G dan kamera 48MP.'
             ],
 
@@ -140,6 +151,7 @@ class ProductTableSeeder extends Seeder
                 'sku' => 'BUKU-NOVEL01',
                 'purchase_price' => 75000,
                 'selling_price' => 100000,
+                'minimum_stock' => 200,
                 'description' => 'Buku novel fiksi dengan cerita misteri.'
             ],
 
@@ -151,6 +163,7 @@ class ProductTableSeeder extends Seeder
                 'sku' => 'GITAR-001',
                 'purchase_price' => 700000,
                 'selling_price' => 900000,
+                'minimum_stock' => 200,
                 'description' => 'Gitar akustik dengan suara yang jernih.'
             ],
 
@@ -162,6 +175,7 @@ class ProductTableSeeder extends Seeder
                 'sku' => 'SMARTWATCH-123',
                 'purchase_price' => 500000,
                 'selling_price' => 650000,
+                'minimum_stock' => 200,
                 'description' => 'Smartwatch dengan fitur pelacak kebugaran.'
             ],
 
@@ -173,6 +187,7 @@ class ProductTableSeeder extends Seeder
                 'sku' => 'KURSI-GAMING01',
                 'purchase_price' => 750000,
                 'selling_price' => 900000,
+                'minimum_stock' => 200,
                 'description' => 'Kursi gaming dengan desain ergonomis.'
             ],
 
@@ -184,6 +199,7 @@ class ProductTableSeeder extends Seeder
                 'sku' => 'KEBUN-001',
                 'purchase_price' => 100000,
                 'selling_price' => 120000,
+                'minimum_stock' => 200,
                 'description' => 'Peralatan berkebun lengkap dengan sekop dan cangkul.'
             ],
 
@@ -195,6 +211,7 @@ class ProductTableSeeder extends Seeder
                 'sku' => 'BLENDER-001',
                 'purchase_price' => 250000,
                 'selling_price' => 300000,
+                'minimum_stock' => 200,
                 'description' => 'Blender multifungsi dengan kecepatan tinggi.'
             ],
 
@@ -206,6 +223,7 @@ class ProductTableSeeder extends Seeder
                 'sku' => 'HIKING-001',
                 'purchase_price' => 150000,
                 'selling_price' => 200000,
+                'minimum_stock' => 200,
                 'description' => 'Perlengkapan hiking untuk perjalanan outdoor.'
             ],
 
@@ -217,6 +235,7 @@ class ProductTableSeeder extends Seeder
                 'sku' => 'DAPUR-001',
                 'purchase_price' => 400000,
                 'selling_price' => 500000,
+                'minimum_stock' => 200,
                 'description' => 'Set peralatan dapur lengkap dengan pisau dan sendok.'
             ],
 
@@ -228,6 +247,7 @@ class ProductTableSeeder extends Seeder
                 'sku' => 'BOLA-002',
                 'purchase_price' => 150000,
                 'selling_price' => 180000,
+                'minimum_stock' => 200,
                 'description' => 'Bola basket standar NBA.'
             ],
 
@@ -239,6 +259,7 @@ class ProductTableSeeder extends Seeder
                 'sku' => 'RENANG-WOMAN-001',
                 'purchase_price' => 250000,
                 'selling_price' => 300000,
+                'minimum_stock' => 200,
                 'description' => 'Baju renang modis untuk wanita.'
             ],
 

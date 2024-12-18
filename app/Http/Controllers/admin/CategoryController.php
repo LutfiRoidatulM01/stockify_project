@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
 
+use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Services\CategoryService;
+use App\Http\Controllers\Controller;
+use App\Services\admin\CategoryService;
 
 class CategoryController extends Controller
 {
@@ -14,6 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = $this->categoryService->getAllCategories(); 
+        $categories = Category::paginate(20);
         return view('pages.admin.categories.index', compact('categories'));
     }
 
