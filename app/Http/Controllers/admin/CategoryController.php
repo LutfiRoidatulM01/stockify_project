@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\admin\CategoryService;
+use App\Helpers\ActivityLogHelper;
 
 class CategoryController extends Controller
 {
@@ -16,8 +17,8 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = $this->categoryService->getAllCategories(); 
-        $categories = Category::paginate(20);
-        return view('pages.admin.categories.index', compact('categories'));
+        $categories = Category::paginate(10);
+        return view('pages.admin.products.categories', compact('categories'));
     }
 
     protected $categoryService;
@@ -51,6 +52,7 @@ class CategoryController extends Controller
         if (isset($result['errors'])) {
             return redirect()->route('categories.index')->withErrors($result['errors']);
         }
+        ActivityLogHelper::log('Berhasil Menambahkan Kategori Baru');
 
     
         return redirect()->route('categories.index')->with('success', 'Category successfully created!');
@@ -70,12 +72,14 @@ class CategoryController extends Controller
             return redirect()->back()->withErrors($result['errors'])->withInput();
         }
 
+        ActivityLogHelper::log('Memperbarui Kategori Baru');
         return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
     }
 
     public function destroy($id)
     {
         $this->categoryService->deleteCategory($id);
+        ActivityLogHelper::log('Menghapus Kategori');
         return redirect()->route('categories.index')->with('success', 'Category deleted successfully.');
     }
 }

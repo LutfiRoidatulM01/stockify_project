@@ -10,9 +10,8 @@ class StockTransactionController extends Controller
 {
     public function index()
     {
-        // Ambil data transaksi stok
-        $transactions = StockTransaction::all();
-
-        return view('pages.admin.riwayat_transaksi.index', compact('transactions'));
+        $transactions = StockTransaction::with(['product', 'user'])->paginate(10);
+      
+        return view('pages.admin.stok.riwayat_transaksi', compact('transactions'));
     }
 }

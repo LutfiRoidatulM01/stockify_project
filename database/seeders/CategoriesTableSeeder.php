@@ -28,7 +28,7 @@ class CategoriesTableSeeder extends Seeder
 
             [
                 'id' => 3,
-                'name' => 'Makanan',
+                'name' => 'Makanan dan Minuman',
                 'description' => 'Kategori untuk berbagai jenis makanan dan minuman.',
             ],
 
@@ -52,7 +52,7 @@ class CategoriesTableSeeder extends Seeder
 
             [
                 'id' => 7,
-                'name' => 'Mainan Anak',
+                'name' => 'Mainan',
                 'description' => 'Kategori untuk berbagai jenis mainan anak-anak.'
             ],
 
@@ -64,75 +64,17 @@ class CategoriesTableSeeder extends Seeder
 
             [
                 'id' => 9,
-                'name' => 'Aksesoris',
-                'description' => 'Kategori untuk aksesoris seperti jam tangan, tas, dan perhiasan.'
+                'name' => 'Interior',
+                'description' => 'Kategori untuk barang dekoratif'
             ],
 
             [
                 'id' => 10,
-                'name' => 'Automotif',
-                'description' => 'Kategori untuk kendaraan dan aksesori otomotif.'
+                'name' => 'Kesehatan',
+                'description' => 'Kategori untuk barang kesehatan'
             ],
 
-            [
-                'id' => 11,
-                'name' => 'Peralatan Kantor',
-                'description' => 'Kategori untuk peralatan kantor dan perlengkapan kerja.'
-            ],
 
-            [
-                'id' => 12,
-                'name' => 'Furnitur',
-                'description' => 'Kategori untuk berbagai jenis furnitur rumah dan kantor.'
-            ],
-
-            [
-                'id' => 13,
-                'name' => 'Peralatan Dapur',
-                'description' => 'Kategori untuk peralatan dapur dan masak.'
-            ],
-
-            [
-                'id' => 14,
-                'name' => 'Ponsel & Aksesori',
-                'description' => 'Kategori untuk ponsel dan aksesori terkait.'
-            ],
-
-            [
-                'id' => 15,
-                'name' => 'Bahan Bangunan',
-                'description' => 'Kategori untuk bahan bangunan dan peralatan konstruksi.'
-            ],
-
-            [
-                'id' => 16,
-                'name' => 'Alat Musik',
-                'description' => 'Kategori untuk berbagai jenis alat musik.'
-            ],
-
-            [
-                'id' => 17,
-                'name' => 'Hobi',
-                'description' => 'Kategori untuk barang-barang hobi seperti peralatan melukis dan peralatan berkebun.'
-            ],
-
-            [
-                'id' => 18,
-                'name' => 'Produk Kesehatan',
-                'description' => 'Kategori untuk produk-produk kesehatan dan perawatan tubuh.'
-            ],
-
-            [
-                'id' => 19,
-                'name' => 'Listrik & Elektronik Rumah Tangga',
-                'description' => 'Kategori untuk produk-produk listrik dan elektronik rumah tangga.'
-            ],
-
-            [
-                'id' => 20,
-                'name' => 'Produk Bayi & Anak-anak',
-                'description' => 'Kategori untuk produk-produk bayi dan anak-anak.'
-            ]
         ];
 
         foreach ($categoryData as $key => $val) {

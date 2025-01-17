@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use App\Helpers\ActivityLogHelper;
 use App\Http\Controllers\Controller;
 use App\Services\admin\SupplierService;
 use Illuminate\Validation\ValidationException;
@@ -14,7 +15,7 @@ class SupplierController extends Controller
     protected $supplierService;
 
     public function __construct(SupplierService $supplierService)
-    {   
+    {
         $this->supplierService = $supplierService;
     }
     /**
@@ -24,14 +25,9 @@ class SupplierController extends Controller
     public function index()
     {
         $suppliers = $this->supplierService->getAllSuppliers();
-        return view('pages.admin.suppliers.index', compact('suppliers'));
+        $suppliers = Supplier::paginate(10);
+        return view('pages.admin.suppliers', compact('suppliers'));
     }
-
-    // public function index()
-    // {
-    //     $suppliers = Supplier::all(); // Mengambil semua data supplier
-    //     return view('pages.admin.suppliers.index', compact('suppliers'));
-    // }
 
     public function show($id)
     {
@@ -61,8 +57,9 @@ class SupplierController extends Controller
         if (isset($result['errors'])) {
             return redirect()->route('suppliers.index')->withErrors($result['errors']);
         }
+        ActivityLogHelper::log('Menambahkan supplier baru');
 
-        return redirect()->route('suppliers.index')->with('success', 'Category successfully created!');
+        return redirect()->route('suppliers.index')->with('success', 'Supplier berhasil ditambahkan');
     }
 
     public function edit($id)
@@ -80,16 +77,15 @@ class SupplierController extends Controller
             'email' => 'required|email|max:255',
         ]);
 
-        
-
         $this->supplierService->updateSupplier($id, $request->all());
-
-        return redirect()->route('suppliers.index')->with('success', 'Supplier updated successfully.');
+         ActivityLogHelper::log('Mengubah data supplier');
+        return redirect()->route('suppliers.index')->with('success', 'Supplier berhasil di edit');
     }
 
     public function destroy($id)
     {
         $this->supplierService->deleteSupplier($id);
+        ActivityLogHelper::log('Menghapus data supplier');
         return redirect()->route('suppliers.index')->with('success', 'Supplier deleted successfully.');
     }
 }

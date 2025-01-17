@@ -5,6 +5,7 @@ namespace App\Http\Controllers\manajer_gudang;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\StockTransaction;
+use App\Helpers\ActivityLogHelper;
 use App\Http\Controllers\Controller;
 use App\Services\manajer_gudang\BarangKeluarService;
 
@@ -33,7 +34,7 @@ class BarangKeluarController extends Controller
 
     public function store(Request $request)
     {
-        $validated =$request->validate([
+        $validated = $request->validate([
             'product_id' => 'required|exists:products,id',
             'quantity' => 'required|integer|min:1',
             'date' => 'required|date',
@@ -50,7 +51,7 @@ class BarangKeluarController extends Controller
         ];
 
         $this->service->createTransaction($data);
-
+        ActivityLogHelper::log('Menambahkan transaksi keluar');
         return redirect()->route('barang_keluar.index')->with('success', 'Transaksi barang keluar berhasil ditambahkan.');
     }
 
@@ -88,7 +89,7 @@ class BarangKeluarController extends Controller
         if ($transaction) {
             return redirect()->route('barang_keluar.index')->with('success', 'Transaksi berhasil diperbarui.');
         }
-
+        ActivityLogHelper::log('Mengubah data transaksi keluar');
         return redirect()->route('barang_keluar.index')->with('error', 'Transaksi tidak ditemukan.');
     }
 
@@ -99,6 +100,7 @@ class BarangKeluarController extends Controller
             return redirect()->route('barang_keluar.index')->with('success', 'Transaksi berhasil dihapus.');
         }
 
+        ActivityLogHelper::log('Menghapus data transaksi keluar');
         return redirect()->route('barang_keluar.index')->with('error', 'Transaksi tidak ditemukan.');
     }
 }

@@ -9,15 +9,13 @@ class BarangKeluarRepository
     
     public function getAllKeluarTransactions()
     {
-        return StockTransaction::where('type', 'Keluar')->get();
+        return StockTransaction::where('type', 'Keluar')->paginate(10);
     }
-
 
     public function createTransaction($data)
     {
         return StockTransaction::create($data);
     }
-
     
     public function getTransactionById($id)
     {
@@ -35,7 +33,6 @@ class BarangKeluarRepository
         return null;
     }
 
-   
     public function deleteTransaction($id)
     {
         $transaction = StockTransaction::find($id);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\staff_gudang;
 
 use Illuminate\Http\Request;
 use App\Models\StockTransaction;
+use App\Helpers\ActivityLogHelper;
 use App\Http\Controllers\Controller;
 use App\Services\staff_gudang\KonfirmasiKeluarService;
 
@@ -30,7 +31,7 @@ class KonfirmasiKeluarController extends Controller
     {
         $notes = $request->input('notes'); 
         $this->service->confirmTransaction($id, $notes); 
-
-        return redirect()->route('konfirmasi.dikeluarkan')->with('success', 'Transaksi berhasil dikeluarkan.');
+        ActivityLogHelper::log('Melakukan konfirmasi barang keluar');
+        return redirect()->back()->with('success', 'Transaksi berhasil disetujui.');
     }
 }

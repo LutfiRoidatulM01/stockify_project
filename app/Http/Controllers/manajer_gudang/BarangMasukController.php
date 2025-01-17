@@ -5,6 +5,7 @@ namespace App\Http\Controllers\manajer_gudang;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\StockTransaction;
+use App\Helpers\ActivityLogHelper;
 use App\Http\Controllers\Controller;
 use App\Services\manajer_gudang\BarangMasukService;
 
@@ -46,7 +47,7 @@ class BarangMasukController extends Controller
         ];
 
         $this->service->createTransaction($data);
-
+        ActivityLogHelper::log('Menambahkan transaksi masuk');
         return redirect()->route('barang_masuk.index')->with('success', 'Transaksi barang masuk berhasil ditambahkan.');
     }
 
@@ -81,7 +82,7 @@ class BarangMasukController extends Controller
         ];
 
         $transaction = $this->service->updateTransaction($id, $data);
-
+        ActivityLogHelper::log('Mengubah data transaksi masuk');
         if ($transaction) {
             return redirect()->route('barang_masuk.index')->with('success', 'Transaksi berhasil diperbarui.');
         }
@@ -89,14 +90,13 @@ class BarangMasukController extends Controller
         return redirect()->route('barang_masuk.index')->with('error', 'Transaksi tidak ditemukan.');
     }
 
-    // Menghapus transaksi barang masuk
     public function destroy($id)
     {
         $deleted = $this->service->deleteTransaction($id);
         if ($deleted) {
             return redirect()->route('barang_masuk.index')->with('success', 'Transaksi berhasil dihapus.');
         }
-
+        ActivityLogHelper::log('Menghapus data transaksi masuk');
         return redirect()->route('barang_masuk.index')->with('error', 'Transaksi tidak ditemukan.');
     }
 }

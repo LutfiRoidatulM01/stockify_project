@@ -8,7 +8,7 @@ class ProductAttributeRepository
 {
     public function getAll()
     {
-        return ProductAttribute::with('product')->get();
+        return ProductAttribute::with('product')->paginate(10);
     }
 
     public function findById($id)

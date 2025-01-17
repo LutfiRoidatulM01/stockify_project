@@ -46,6 +46,8 @@
     <meta property="og:image" content="#">
     <meta property="og:image:type" content="image/png">
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         // On page load or when changing themes, best to add inline in `head` to avoid FOUC
         if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia(
@@ -55,6 +57,9 @@
             document.documentElement.classList.remove('dark')
         }
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 @php
     $whiteBg = isset($params['white_bg']) && $params['white_bg'];

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Helpers\ActivityLogHelper;
 use App\Services\admin\UserService;
 use App\Http\Controllers\Controller;
 
@@ -19,7 +20,8 @@ class UserController extends Controller
     public function index()
     {
         $users = $this->userService->getAllUsers();
-        return view('pages.admin.users.index', compact('users')); // Mengirim data ke view
+        $users = User::paginate(10);
+        return view('pages.admin.users', compact('users')); // Mengirim data ke view
     }
 
     /**
@@ -44,7 +46,7 @@ class UserController extends Controller
 
         $userData = $request->only(['name', 'email', 'password', 'role']);
         $user = $this->userService->createUser($userData);
-
+        ActivityLogHelper::log('Menambahkan user baru');
         return $user ? redirect()->route('users.index')->with('success', 'User berhasil ditambahkan!')
             : redirect()->back()->with('error', 'Terjadi kesalahan saat menambahkan user.');
     }
@@ -81,6 +83,8 @@ class UserController extends Controller
             return redirect()->back()->withErrors($result['errors'])->withInput();
         }
 
+
+        ActivityLogHelper::log('Mengubah data users');
         return redirect()->route('users.index')->with('success', 'Users updated successfully.');
     }
 
@@ -90,6 +94,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         $this->userService->deleteUser($id);
+        ActivityLogHelper::log('Menghapus data users');
         return redirect()->route('users.index')->with('success', 'Users deleted successfully.');
     }
 }

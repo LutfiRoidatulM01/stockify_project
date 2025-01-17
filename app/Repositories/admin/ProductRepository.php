@@ -8,13 +8,14 @@ class ProductRepository
 {
     public function getAll()
     {
-        return Product::all();
+        
+        return Product::with(['category', 'supplier', 'stockTransactions'])->paginate(10);
     
     }
 
     public function findById($id)
     {
-        return Product::findOrFail($id);
+         return Product::with(['category', 'supplier', 'stockTransactions'])->findOrFail($id);
     }
 
     public function create(array $data)
@@ -34,5 +35,10 @@ class ProductRepository
         $product = $this->findById($id);
         $product->delete();
         return true;
+    }
+
+    public function bulkInsert(array $products)
+    {
+        return Product::insert($products);
     }
 }

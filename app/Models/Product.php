@@ -19,8 +19,10 @@ class Product extends Model
         'purchase_price',
         'selling_price',
         'description',
+        'image',
         'minimum_stock',
     ];
+
 
     public function category()
     {
@@ -37,8 +39,27 @@ class Product extends Model
         return $this->hasMany(StockTransaction::class);
     }
 
+    public function getStokMasukAttribute()
+    {
+        return $this->stockTransactions()
+            ->where('type', 'Masuk')
+            ->where('status', 'Diterima')
+            ->sum('quantity');
+    }
+
+    public function getStokKeluarAttribute()
+    {
+        return $this->stockTransactions()
+            ->where('type', 'Keluar')
+            ->where('status', 'Dikeluarkan')
+            ->sum('quantity');
+    }
+
     public function totalStock()
     {
-        return $this->stockTransactions()->sum('quantity');
+        $incomingStock = $this->stokMasuk;
+        $outgoingStock = $this->stokKeluar;
+        return $incomingStock - $outgoingStock; 
     }
+
 }

@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Setting;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use App\Repositories\CategoryRepository;
-use App\Repositories\SupplierRepository;
+use App\Repositories\admin\CategoryRepository;
+use App\Repositories\admin\SupplierRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,6 +33,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $settings = Setting::first();
+        
+        // Bagikan data settings ke seluruh view
+        View::share('settings', $settings);
     }
 }

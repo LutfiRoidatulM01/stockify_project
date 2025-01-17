@@ -9,7 +9,7 @@ class BarangMasukRepository
     
     public function getAllMasukTransactions()
     {
-        return StockTransaction::where('type', 'Masuk')->get();
+        return StockTransaction::where('type', 'Masuk')->paginate(10);
     }
 
 

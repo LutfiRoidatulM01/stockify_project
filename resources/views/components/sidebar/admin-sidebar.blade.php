@@ -1,5 +1,5 @@
 <x-sidebar-dashboard>
-    <x-sidebar-menu-dashboard routeName="index-admin" title="Dashboard">
+    <x-sidebar-menu-dashboard routeName="index-admin.index" title="Dashboard">
         <x-slot:icon>
             <i class="fas fa-home"></i>
         </x-slot:icon>
@@ -26,21 +26,21 @@
         </x-sidebar-menu-dropdown-item-dashboard>
     </x-sidebar-menu-dropdown-dashboard>
 
-    <x-sidebar-menu-dropdown-dashboard routeName="stok.*" title="Manajemen Stok">
+    <x-sidebar-menu-dropdown-dashboard routeName="admin.stok.*" title="Manajemen Stok">
         <x-slot:icon>
             <i class="fas fa-warehouse"></i>
         </x-slot:icon>
-        <x-sidebar-menu-dropdown-item-dashboard routeName="stok.riwayat_transaksi.index" title="Riwayat Transaksi">
+        <x-sidebar-menu-dropdown-item-dashboard routeName="admin.stok.riwayat_transaksi.index" title="Riwayat Transaksi">
             <x-slot:icon>
                 <i class="fas fa-history"></i>
             </x-slot:icon>
         </x-sidebar-menu-dropdown-item-dashboard>
-        <x-sidebar-menu-dropdown-item-dashboard routeName="stok.stock_opname.index" title="Stok Opname">
+        <x-sidebar-menu-dropdown-item-dashboard routeName="admin.stok.stock_opname.index" title="Stok Opname">
             <x-slot:icon>
                 <i class="fas fa-boxes"></i>
             </x-slot:icon>
         </x-sidebar-menu-dropdown-item-dashboard>
-        <x-sidebar-menu-dropdown-item-dashboard routeName="stok.pengaturan_stok" title="Pengaturan Stok Minimum">
+        <x-sidebar-menu-dropdown-item-dashboard routeName="admin.stok.pengaturan_stok.index" title="Pengaturan Stok Minimum">
             <x-slot:icon>
                 <i class="fas fa-cogs"></i>
             </x-slot:icon>
@@ -63,20 +63,26 @@
         <x-slot:icon>
             <i class="fas fa-chart-bar"></i>
         </x-slot:icon>
-        <x-sidebar-menu-dropdown-item-dashboard routeName="admin.laporan.laporan_stok" title="Laporan Stok Barang">
+        <x-sidebar-menu-dropdown-item-dashboard routeName="admin.laporan.laporan_stok.index" title="Laporan Stok Barang">
             <x-slot:icon>
-                <i class="fas fa-chart-bar"></i>
+                <i class="fas fa-clipboard-list"></i> 
             </x-slot:icon>
         </x-sidebar-menu-dropdown-item-dashboard>
-        <x-sidebar-menu-dropdown-item-dashboard routeName="admin.laporan.laporan_transaksi" title="Laporan Transaksi">
+        <x-sidebar-menu-dropdown-item-dashboard routeName="admin.laporan.laporan_transaksi.index" title="Laporan Transaksi">
             <x-slot:icon>
                 <i class="fas fa-receipt"></i>
             </x-slot:icon>
         </x-sidebar-menu-dropdown-item-dashboard>
-        <x-sidebar-menu-dropdown-item-dashboard routeName="admin.laporan.laporan_aktivitas" title="Laporan Aktivitas User">
+        <x-sidebar-menu-dropdown-item-dashboard routeName="admin.laporan.laporan_aktivitas.index" title="Laporan Aktivitas User">
             <x-slot:icon>
                 <i class="fas fa-user-clock"></i>
             </x-slot:icon>
         </x-sidebar-menu-dropdown-item-dashboard>
     </x-sidebar-menu-dropdown-dashboard>
+
+    <x-sidebar-menu-dashboard routeName="pengaturan.index" title="Pengaturan">
+        <x-slot:icon>
+            <i class="fas fa-cog"></i>
+        </x-slot:icon>
+    </x-sidebar-menu-dashboard>
 </x-sidebar-dashboard>

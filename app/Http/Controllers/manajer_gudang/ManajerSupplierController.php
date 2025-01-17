@@ -12,8 +12,6 @@ class ManajerSupplierController extends Controller
     {
          
         $suppliers = Supplier::all();
-
-        // Kirim data ke view
         return view('pages.manajer_gudang.manajer_suppliers', compact('suppliers'));
     }
 }
