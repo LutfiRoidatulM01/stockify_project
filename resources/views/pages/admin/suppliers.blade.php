@@ -236,9 +236,9 @@
                 </svg>
             </a>
             <span class="text-sm font-normal text-gray-500">Showing <span
-                class="font-semibold text-gray-900">{{ $suppliers->firstItem() }}</span> to
-            <span class="font-semibold text-gray-900">{{ $suppliers->lastItem() }}</span>
-            of <span class="font-semibold text-gray-900">{{ $suppliers->total() }}</span></span>
+                    class="font-semibold text-gray-900">{{ $suppliers->firstItem() }}</span> to
+                <span class="font-semibold text-gray-900">{{ $suppliers->lastItem() }}</span>
+                of <span class="font-semibold text-gray-900">{{ $suppliers->total() }}</span></span>
         </div>
         <div class="flex items-center space-x-3">
             <a href="{{ $suppliers->previousPageUrl() }}"
@@ -405,7 +405,7 @@
                                         placeholder="example@company.com">
                                 </div>
                             </div>
-                        </form>
+
                     </div>
 
                     <!-- Modal footer -->
@@ -414,7 +414,7 @@
                             class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                             type="submit">Save all</button>
                     </div>
-
+                    </form>
                 </div>
             </div>
         </div>
@@ -467,6 +467,5 @@
                 </div>
             </div>
         </div>
-        
     @endforeach
 @endsection

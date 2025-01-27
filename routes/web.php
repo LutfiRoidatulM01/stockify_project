@@ -63,7 +63,6 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/admin/atribut', [ProductAttributeController::class, 'index'])->name('atribut.index');
         });
 
-       
         Route::get('/products/export', [ProductController::class, 'export'])->name('products.export');
         Route::post('/products/import', [ProductController::class, 'import'])->name('products.import');
 
